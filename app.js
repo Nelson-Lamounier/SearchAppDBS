@@ -10,6 +10,8 @@ const errorController = require('./controllers/error')
 const sequelize = require('./util/database')
 const Job = require('./models/job')
 const User = require('./models/user')
+const Cart = require('./models/cart')
+const CartItem = require('./models/cart-item')
 
 const app = express();
 
@@ -24,6 +26,16 @@ const userRouter = require('./routes/profile')
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// sequelize register this function but never run it, this is only run for incoming request
+app.use((req, res, next) => {
+  User.findByPk(1).then(user => {
+    req.user = user;
+    next()
+  }).catch(err => {
+    console.log(err)
+  })
+});
+
 app.use(jobRoutes);
 app.use('/admin', adminRouter);
 app.use('/user', userRouter);
@@ -34,7 +46,13 @@ app.use(errorController.get404)
 
 Job.belongsTo(User, {constraints: true, onDelete: 'CASCADE'})
 User.hasMany(Job)
+User.hasOne(Cart);
+Cart.belongsTo(User);
+Cart.belongsToMany(Job, { through: CartItem})
+Job.belongsToMany(Cart, { through: CartItem});
+
 // {force: true}
+// 'npm start' => runs the function 
 sequelize.sync().then(result => {
   return User.findByPk(1)
   // console.log(result);
@@ -47,6 +65,9 @@ sequelize.sync().then(result => {
 } 
 ).then(user => {
   // console.log(user)
+  return user.createCart()
+
+}).then(cart => {
   app.listen(3000);
 }).catch(err => {
   console.log(err);

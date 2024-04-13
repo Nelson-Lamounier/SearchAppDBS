@@ -8,23 +8,25 @@
     <%- include('../includes/navigation.ejs') %>
     <section class="section-2">
       <div class="search-page">
-  
+        
         <div class="jobs-search-page-content" id="main-content">
+          
           <% if (posts.length > 0) { %> 
             <div class="jobs-search-page-content-left">
               <% posts.forEach(p =>  { %>
               <div class="jobs-search-container">
-                
-                <a href=""><%= p.postData.title %>  
+                <a href=""><%= p.title %>  
                   <p>Company Name</p>
-                <p><%= p.postData.title %> </p>
-                <p><%= p.postData.contract %></p>
-                <p><%= p.postData.description %></p>
+                <p><%= p.title %> </p>
+                <p><%= p.contract %></p>
+                <p><%= p.description %></p>
               </a>
+              
               </div>
               <% }) %>
               <% } %>
-              
+              <h1>THIS IS A TEST</h1>
+
               <!-- <div class="jobs-search-container">
                 <a href="">Job Title</a>
                 <p><span >Rebecca Flex.</span> CEO at Company.</p>

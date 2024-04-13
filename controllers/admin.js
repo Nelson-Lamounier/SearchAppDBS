@@ -25,7 +25,7 @@ exports.postAddPost = (req, res, next) => {
   const contract = req.body.contract;
   const location = req.body.location;
   const jobUrl = req.body.jobUrl;
-  Job.create({
+  req.user.createJob({
     title: title,
     description: description,
     salary: salary,
@@ -34,6 +34,7 @@ exports.postAddPost = (req, res, next) => {
     jobUrl: jobUrl,
   }).then(result => {
     console.log('Created Post')
+      res.redirect("/admin/posts");
   }).catch(err => {console.log(err)})
   // job.save();
   // res.redirect("/admin/posts");
@@ -55,11 +56,11 @@ exports.getJobById = (req,res, next) =>{
 }
 // Function to display all created jobs on the Admin manager section
 exports.getJobs = (req, res, next) => {
-    Job.findAll().then(jobs =>{      res.render("admin/posts", {
+  req.user.getJobs().then(jobs =>{      res.render("admin/posts", {
       jps: jobs,
       pageTitle: "Admin Jobs Manager",
       path: "/admin/posts",
-      hasJobs: jobs.length > 0,
+      // hasJobs: jobs.length > 0,
     });}).catch(err => {console.log(err)});
 
 };
@@ -71,7 +72,8 @@ exports.getEditJob = (req, res, next) => {
     return res.redirect('/')
   }
   const jobId = req.params.jobId;
-  Job.findByPk(jobId).then(job => {
+  req.user.getJobs({where: {id: jobId}}).then(jobs => {
+    const job = jobs[0]
     if(!job) {
       return res.redirect('/');
     }
@@ -81,9 +83,9 @@ exports.getEditJob = (req, res, next) => {
       editing: editMode,
       job: job
     });
-    }).catch(err => 
-    console.log(err)
-  )
+    }).catch(err => console.log(err))
+
+
 }
 
 // This function edit the job posted on the admin user section 
