@@ -1,4 +1,4 @@
-const User = require('../models/user')
+const User = require('../models/profile')
 
 exports.getAddUser = (req, res, next) => {
   res.render('user/create-profile', {
