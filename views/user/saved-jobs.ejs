@@ -1,0 +1,50 @@
+<%- include('../includes/head-user.ejs') %>
+<!-- Sign Up Page -->
+<div class="post-job-page__admin">
+  <%- include('../includes/nav-logged-in.ejs') %>
+ 
+  <div class="page-content__user">
+
+    <div class="saved-jobs__user"> 
+
+  <h1>My Jobs</h1>
+
+<div class="nav-toggle">
+  <button class="tablink active" onclick="openCity('London', this, 'white')" >Saved</button>
+  <button class="tablink" onclick="openCity('Paris', this, 'white')">Applied</button>
+  <button class="tablink" onclick="openCity('Tokyo', this, 'white')">Interviews</button>
+  <button class="tablink" onclick="openCity('Oslo', this, 'white')">Archived</button>
+  <div id="London" class="tabcontent">
+    <div class="user-interation-jobs"> 
+    <a href="">Title</a>
+    <p>London is the capital city of England.</p>
+    <p>London is the capital city of England.</p>
+  </div>
+  </div>
+  
+  <div id="Paris" class="tabcontent">
+    <h1>Paris</h1>
+    <p>Paris is the capital of France.</p>
+  </div>
+  
+  <div id="Tokyo" class="tabcontent">
+    <h1>Tokyo</h1>
+    <p>Tokyo is the capital of Japan.</p>
+  </div>
+  
+  <div id="Oslo" class="tabcontent">
+    <h1>Oslo</h1>
+    <p>Oslo is the capital of Norway.</p>
+  </div>
+  
+  
+
+
+
+</div>
+
+</div>
+  </div>  
+   
+</div>
+<%- include('../includes/footer.ejs') %> <%- include('../includes/end.ejs') %>

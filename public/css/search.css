@@ -1,0 +1,172 @@
+.jobs-search-page-content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 10rem;
+
+}
+
+.jobs-search-page-content-left {
+  width: 40%;
+  border-right: 0.1rem solid #b1b1b1;
+  padding: 3rem 3rem 3rem 0;
+}
+
+.jobs-search-page-content-left h1 {
+  font-size: 4rem;
+  font-weight: 300;
+  color: #333;
+  line-height: 1.1;
+}
+
+.jobs-search-page-content-right {
+  width: 60%;
+  padding: 3rem 0 3rem 3rem;
+  color: #555;
+
+}
+
+.jobs-search-page-content-right h3 {
+  font-size: 2.4rem;
+  font-weight: 300;
+}
+
+.jobs-search-page-content-right h4 {
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+/* Style the container with a rounded border, grey background and some padding and margin */
+
+.jobs-search-container {
+  border: 0.1rem solid #ccc;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  padding: 1.6rem;
+  margin: 1.6rem 0;
+}
+.jobs-search-container-right {
+  border: 0.1rem solid #ccc;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  padding: 1.6rem;
+  margin: 1.6rem 0;
+  font-size: 2rem;
+
+}
+
+/* Clear floats after containers */
+.jobs-search-container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.jobs-search-container p {
+  font-size: 1.5rem;
+  margin:1rem 1.5rem 0 0;
+  line-height: 3rem;
+  font-weight: 300;
+}
+
+.jobs-search-container a {
+  font-size: 2.5rem;
+  margin-right: 1.5rem;
+  line-height: 3rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: #333;
+}
+
+.jobs-search-container a:hover {
+  border-bottom: 0.2rem #333 solid;
+}
+
+.jobs-search-container:active {
+  border: 0.1rem solid #1d3e6b;
+}
+
+/* Add media queries for responsiveness. This will center both the text and the image inside the container */
+@media (max-width: 500px) {
+  .jobs-search-container {
+    text-align: center;
+  }
+
+}
+  /* Style for the scrollbar track */
+  .scroll-container::-webkit-scrollbar {
+    width: 1rem; /* Width of the scrollbar */
+  }
+  
+  /* Style for the scrollbar thumb */
+  .scroll-container::-webkit-scrollbar-thumb {
+    background-color: rgb(255, 255, 255); /* Color of the thumb */
+    border-radius: 0.5rem; /* Radius of the thumb */
+  }
+  
+  /* Style for the scrollbar track */
+  .scroll-container::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Color of the track */
+    border-radius: 5px; /* Radius of the track */
+  }
+
+  /* Style for the container with overflow */
+  .scroll-container {
+    width: 100%; /* Width of the container */
+    height: 100vh; /* Height of the container */
+    overflow: auto; /* Enable scrollbar */
+    
+  }
+  
+  /* Style for the content inside the container */
+  .content {
+    width: 100%; /* Width of the content (to create horizontal scrollbar) */
+    height: 100rem; /* Height of the content (to create vertical scrollbar) */
+    background-color: #fff; /* Background color of the content */
+  
+  }
+
+  .jobs-search-container-right h1, .jobs-search-container-right p {
+    margin-bottom: 1rem;
+  }
+
+  .jobs-search-container-right button {
+    padding: 1rem 2rem;
+    margin-bottom: 2rem;
+    cursor: pointer;
+  }
+
+  .btn-apply {
+    font-size: 1.5rem;
+    color: #fff;
+    background-color: #1d3e6b;
+    border: 0.5rem solid #fff;
+    border-radius: 1rem;
+  }
+  .btn-apply:hover {
+    background-color: #3a7bd5;
+  }
+
+  .btn-save {
+    font-size: 1.5rem;
+    color: #0c192b;
+    background-color: #c4d7f2;
+    border: none;
+    border-radius: 1rem;
+  }
+
+  .btn-save:hover {
+    background-color: #6195dd;
+  }
+
+  .subcontainer-info {
+    border-top: 0.1rem solid #333;
+    padding: 2rem;
+  }
+
+  .subcontainer-info h1 {
+    font-size: 2rem;
+  }
+
+
+
+
+

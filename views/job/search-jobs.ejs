@@ -1,0 +1,73 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/search.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/font-awesome.min.css">
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <section class="section-2">
+      <div class="search-page">
+  
+        <div class="jobs-search-page-content" id="main-content">
+          <% if (posts.length > 0) { %> 
+            <div class="jobs-search-page-content-left">
+              <% posts.forEach(p =>  { %>
+              <div class="jobs-search-container">
+                
+                <a href=""><%= p.postData.title %>  
+                  <p>Company Name</p>
+                <p><%= p.postData.title %> </p>
+                <p><%= p.postData.contract %></p>
+                <p><%= p.postData.description %></p>
+              </a>
+              </div>
+              <% }) %>
+              <% } %>
+              
+              <!-- <div class="jobs-search-container">
+                <a href="">Job Title</a>
+                <p><span >Rebecca Flex.</span> CEO at Company.</p>
+                <p>No one is better than John Doe.</p>
+              </div> -->
+            </div>
+            <div class="jobs-search-page-content-right">
+  
+              <div class="jobs-search-container-right" id="scroll-container">
+                <h1>Job Title </h1> 
+                  <p> Company Name</p>
+                <p> Location</p>
+                <p>Full-Time</p>
+                <button class="btn-apply">Apply</button>
+                <button class="btn-save"><i class="fa fa-bookmark"></i></button>
+                <div class="scroll-container" >
+                  <div class="content" >
+                    <div class="subcontainer-info"> 
+                    <h1> Job details</h1>
+                    <p> Location</p>
+                  </div>
+                  <div class="subcontainer-info"> 
+                    <h1> Location</h1>
+                    <p> Location</p>
+                  </div>
+                  <div class="subcontainer-info"> 
+                    <h1> Full job description</h1>
+                      <p> Location</p>
+                      <p>Full-Time</p>
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium necessitatibus ipsa libero atque officia natus quasi voluptas, ducimus quisquam. Soluta esse quasi doloribus quisquam corporis tempore sed consequatur possimus vel.</p>
+                  </div>
+  
+                  </div>
+                </div>
+              </div>
+  
+            </div>
+           
+        </div>
+    </div>
+  
+  </section>
+
+    <%- include('../includes/footer.ejs') %>
+    <%- include('../includes/end.ejs') %>
+   

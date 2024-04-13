@@ -1,0 +1,276 @@
+/* Login Page */
+.register-page__user {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  
+}
+
+.register-page-content__user {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 0.1rem solid #cfcfcf;
+  padding: 3rem;
+  width: 50%;
+
+}
+
+.form-user-btn {
+  background-color: #064699;;
+  border: 0.1rem solid #064699;;
+  font-size: 2rem;
+  font-weight: 400;
+  cursor: pointer;
+  width: 15%;
+  text-align: center;
+  margin-top: 2rem;
+  border-radius: 0.5rem;
+  color: #fff;
+}
+
+.form-user-btn:hover {
+  background-color: #4d6d97;;
+  border: 0.1rem solid #4d6d97;
+  color: #fff;
+}
+
+/* user profile */
+
+.profile-page-content__user { 
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 5rem 3rem 3rem 0;
+  
+}
+.user-info{
+  font-size: 2rem;
+  padding: 2rem 0;
+}
+
+.user-info li{
+  padding: 1rem;
+}
+
+.updated-file {
+  text-align: center;
+  padding: 2rem;
+  border-bottom: 0.1rem solid #333;
+  border-top: 0.1rem solid #333;
+
+}
+
+.updated-file button {
+  font-size: 1.5rem;
+  padding: 1rem 3rem;
+  
+}
+
+.profile-page-content__user h2 {
+    margin-top: 10rem;
+}
+
+
+
+.signup-page-content-left h1 {
+  font-size: 4rem;
+  font-weight: 300;
+  color: #333;
+  line-height: 1.1;
+}
+
+.profile-page-content__user {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.content-left-images {
+  display: flex;
+  margin-bottom: 5rem;
+}
+
+.content-left-images img {
+  width: 18rem;
+  border-radius: 50%;
+  border: 1.5rem solid #ccc;
+  margin-right: 5rem;
+}
+.page-content__user {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register-page-form__user input {
+  width: 100%;
+  height: 4.5rem;
+  margin: 1rem;
+  border-radius: 0.5rem;
+}
+
+.register-page-form__user label {
+  width: 100%;
+  font-size: 2rem;
+  border-radius: 0.5rem;
+}
+
+
+.login-page-logo {
+  margin-bottom: 1.2rem;
+}
+
+.login-page-logo .p-1 {
+  color: #064699;
+}
+
+.login-page-logo .p-2 {
+  color: #32a4f0;
+}
+
+.login-page-logo span:nth-child(3) {
+  color: #064699;
+}
+
+.login-page-logo span:nth-child(4) {
+  color: #32a4f0;
+}
+
+
+
+.form-login-input {
+  padding: 0 1.5rem;
+  border: 0.1rem solid #777;
+  font-size: 1.6rem;
+}
+
+.form-login-btn {
+  background-color: #036bb1;
+  color: #fff;
+  border: 0.1rem solid #036bb1;
+  font-size: 1.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.form-login-link {
+  font-size: 1.6rem;
+  color: #229fe7;
+  margin: 1.2rem 0 1rem 0;
+}
+
+/* Saved Jobs section */
+
+.saved-jobs__user {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
+}
+.saved-jobs__user h1 {
+  font-size: 3rem;
+  margin: 2rem 0;
+  font-weight: 400;
+}
+
+
+
+.nav-list__user {
+  display: flex;
+}
+
+.nav-list-item__user {
+  height: 8rem;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  transition: border-bottom 0.1s;
+}
+
+.nav-list-item__user:hover {
+  border-bottom: 0.2rem solid #fff;
+}
+
+.nav-list-link__user {
+  width: 100%;
+  height: 100%;
+  font-size: 1.7rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: rgb(26, 25, 25);
+  display: flex;
+  align-items: center;
+}
+.nav-dropdown-item {
+  width: 25rem;
+  margin: 2rem 10rem;
+  display: flex;
+  flex-direction: column;
+}
+.dropdown-heading {
+  display: none;
+}
+
+
+.nav-toggle {
+  width: 100%;
+  font-size: 2rem;
+ 
+  justify-content: space-between;
+  border-bottom: 0.1rem #333 solid;
+}
+
+.nav-toggle p{
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.user-interation-jobs {
+  width: 100%;
+  text-align: start;
+  padding: 2rem 0;
+  border-bottom: 0.1rem #333 solid;
+  border-top: 0.1rem #333 solid;
+  margin-top: 2rem;
+}
+/* Style the tab buttons */
+.tablink {
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 25%;
+}
+
+/* Change background color of buttons on hover */
+.tablink:hover {
+  background-color: #777;
+}
+
+/* Set default styles for tab content */
+.tabcontent {
+  width: 100%;
+  color: white;
+  display: none;
+  padding: 50px;
+  text-align: center;
+}
+
+/* Style each tab content individually */
+#London {background-color:#FFFFFF;}
+#Paris {background-color:#FFFFFF;}
+#Tokyo {background-color:#FFFFFF;}
+#Oslo {background-color:#FFFFFF;}
+
+
+/* End of Login Page */

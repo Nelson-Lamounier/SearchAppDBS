@@ -1,0 +1,281 @@
+
+
+.post-job-page__admin {
+  width: 100%;
+  background: linear-gradient(
+    to bottom,
+    #0c192b,
+    #ffffff 70%
+  );
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  transition: height 0.3s ease;
+}
+
+.posts-left-content__admin{
+  border-bottom: 0.1rem solid #636e72;
+}
+
+
+.job-title-link h2 {
+  width: 100%;
+  font-size: 2rem;
+  color: #dfe6e9;
+  background-color: #0c192b; 
+}
+
+.page-content__admin { 
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+.page-content-left__admin {
+  width: 60%;
+  border-right: 0.1rem solid #0c192b; 
+  background-color: #fff;
+  margin: 5rem 0 5rem 5rem;
+}
+
+.btn-admin {
+  margin-left: 1rem;
+  padding: 0.5rem;
+  color: #fff;
+  background-color: #0c192b;
+  border: 0.1rem solid #fff;
+}
+.btn-admin:hover {
+
+  color: #0c192b;
+  background-color: #fff;
+  border: 0.1rem solid #fff;
+  opacity: 2;
+}
+
+.create-post__page {
+  width: 100%;
+  position: relative;
+}
+
+.create-post-content {
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 0.1rem solid #cfcfcf;
+  padding: 3rem;
+}
+
+.create-post-content__form {
+  width: 100%;
+  border-right: 0.1rem solid #b1b1b1;
+
+}
+.create-post-content-right {
+  width: 40%;
+  padding: 3rem 0 3rem 3rem;
+  color: #555;
+}
+
+/* Navigation when user is login */
+
+.logged-page-top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 0.2rem #0c192b solid;
+}
+
+.logged-page-top-nav a {
+
+  padding: 1rem;
+  background-color: transparent;
+  font-size: 2rem;
+  font-weight: 300;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+
+}
+.logged-nav {
+  display: flex;
+}
+/* Navigation when user is login */
+
+.job-title-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  border: none;
+
+}
+
+.job-title-link span {
+  width: 20rem;
+  font-size: 1.5rem;
+  color: #888;
+  position: relative;
+ 
+}
+
+.job-title-link span::before {
+  content: "";
+  width: 10rem;
+  height: 0.1rem;
+  background-color: #ccc;
+  position: absolute;
+  top: 50%;
+  right: 20rem;
+  transform: translateY(-50%);
+}
+
+.job-title-link span::after {
+  content: "";
+  width: 10rem;
+  height: 0.1rem;
+  background-color: #ccc;
+  position: absolute;
+  top: 50%;
+  left: 20rem;
+  transform: translateY(-50%);
+}
+
+.post-inputed__admin {
+  padding: 2rem 1.5rem;
+  font-size: 3rem;
+  text-align: left;
+}
+
+.signup-page-content-right {
+  width: 60%;
+  padding: 2rem 0 3rem 3rem;
+  color: #555;
+  background-color: #ffffff;
+  margin: 3rem 0 0 2rem;
+}
+
+
+
+.post-edit-btn__admin {
+  font-size: 1.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  margin-right: 2rem;
+  background-color: #0c192b;
+  padding: 1rem;
+}
+.post-edit-btn__admin a{
+  padding: 0.5rem 1.5rem;
+  text-decoration: none;
+  color: #dfe6e9;
+  text-align: center;
+  border: 0.1rem solid  #dfe6e9;
+  margin-left: 2rem;
+}
+
+.post-edit-btn__admin a:hover{
+  background-color: #ffffff;
+  margin-top: 0;
+  color: #0c192b;
+}
+
+/* Edit page */
+
+.container-right__admin {
+  width: 40%;
+  color: #555;
+  background-color: #ffffff;
+
+  margin: 5rem 5rem 0 5rem;
+}
+
+.container-right__admin h1{
+  width: 100%;
+  background-color: #0c192b;
+  padding: 2rem;
+  color: #dfe6e9;
+  font-weight: 300;
+}
+
+.sub-container__admin a{
+  width: 100%;
+  color: #2f3131;
+  font-weight: 300;
+  text-decoration: none;
+  font-size: 2rem;
+  margin-left: 2rem;
+}
+
+.sub-container__admin a:hover {
+  color: #6ab04c;
+}
+
+.sub-container__admin {
+  border-bottom: 0.1rem #0c192b solid;
+
+}
+
+.edit-page-format__admin {
+  padding: 3rem;
+  margin: 2rem;
+}
+
+.edit-page-format__admin h1, .edit-page-format__admin h2 {
+  font-size: 2rem;
+  margin: 3rem;
+  line-height: 5rem;
+  font-weight: 300;
+}
+.edit-page-format__admin span {
+  font-size: 2.5rem;
+  color: #555;
+}
+
+/* Style the button that is used to open and close the collapsible content */
+.collapsible {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .collapsible:hover {
+  background-color: #ccc;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
+  padding: 0 18px;
+  font-size: 2rem;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+.content a{
+  font-size: 2rem;
+  color: #0c192b;
+  text-decoration: none;
+}
+
+.header-title{
+  margin: 5rem 0 -4rem 5rem;
+}
+
+
+
+

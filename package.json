@@ -1,0 +1,21 @@
+{
+  "name": "jobsearchappnode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.19.2"
+  },
+  "dependencies": {
+    "mysql": "^2.18.1",
+    "mysql2": "^3.9.4",
+    "sequelize": "^6.37.2"
+  }
+}

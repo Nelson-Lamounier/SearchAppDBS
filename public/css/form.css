@@ -1,0 +1,154 @@
+/* Create post Page */
+
+
+.post-job-page {
+  width: 100%;
+  background: linear-gradient(
+    to bottom,
+    #0c192b,
+    #ffffff 50%
+  );
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 150vh;
+}
+
+.create-post__page {
+  width: 100%;
+
+}
+
+.post-page-content {
+  margin: 10rem 0 ;
+}
+
+.create-post-content {
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 0.1rem solid #cfcfcf;
+  padding: 3rem;
+}
+
+.create-post-content__form {
+  width: 100%;
+  border-right: 0.1rem solid #b1b1b1;
+
+}
+.create-post-content-right {
+  width: 40%;
+  padding: 3rem 0 3rem 3rem;
+  color: #555;
+}
+
+.login-page-logo {
+  margin-bottom: 1.2rem;
+}
+
+.login-page-logo .p-1 {
+  color: #064699;
+}
+
+.login-page-logo .p-2 {
+  color: #32a4f0;
+}
+
+.login-page-logo span:nth-child(3) {
+  color: #064699;
+}
+
+.login-page-logo span:nth-child(4) {
+  color: #32a4f0;
+}
+
+.post-page-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.post-page-form input {
+  width: 85rem;
+  height: 4.5rem;
+  margin: 1rem;
+  border-radius: 0.5rem;
+}
+
+.form-login-input {
+  padding: 0 1.5rem;
+  border: 0.1rem solid #777;
+  font-size: 1.6rem;
+}
+
+.form-login-btn {
+  background-color: #036bb1;
+  color: #fff;
+  border: 0.5rem solid #036bb1;
+  font-size: 1.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem 10rem;
+  border-radius: 0.5rem;
+  margin-top: 2rem;
+
+}
+
+.form-login-link {
+  font-size: 1.6rem;
+  color: #229fe7;
+  margin: 1.2rem 0 1rem 0;
+}
+
+
+
+.form-signup-btn {
+  background-color: #dbe8ec;
+  border: 0.1rem solid #dbe8ec;
+  font-size: 1.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.form-terms {
+  display: flex;
+  padding: 3rem;
+}
+
+.form-terms input {
+  width: 18rem;
+
+}
+
+.post-page-form label {
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  
+}
+
+.post-page-form button{
+  font-size: 1.5rem;
+}
+
+.text-align__form {
+  text-align: left;
+}
+
+.text-edit {
+  width: 85rem;
+  padding: 0.5rem 0;
+  color: #036bb1;
+}
+
+.form-subheader{
+  font-weight: 400;
+  text-align: left;
+  width: 85rem;
+  padding: 1rem 0;
+}

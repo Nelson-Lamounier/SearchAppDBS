@@ -1,0 +1,45 @@
+<%- include('../includes/head-form.ejs') %>
+<!-- Sign Up Page -->
+<div class="post-job-page__admin">
+  <%- include('../includes/nav-logged-in.ejs') %>
+  <h1 class="header-title">Jobs posted</h1>
+  <div class="page-content__admin">
+    <% if (jps.length > 0) { %>
+    <div class="page-content-left__admin">
+      <% for (let job of jps ) { %> 
+        
+      <div class="posts-left-content__admin">
+        <button type="button" class="collapsible"><%= job.title %></button>
+        <div class="content">
+
+          <p>Posted on:</p>
+          <a href="/admin/post/<%= job.id %>"><%= job.id %></a>
+        </div>
+      </div>
+    </a>
+      <% } %>
+      <% } %>
+     
+    </div>
+    <% if (jps.length > 0) { %>
+    <div class="signup-page-content-right">
+      <div class="post-edit-btn__admin">
+        <a href="">Edit</a>
+        <a href="">Delete</a>
+      </div>
+      <% for (let job of jps ) { %> 
+      <h2>Title:<%= job.title %></h2>
+      <h3>Description:<%=  job.description %></h3>
+      <h4>Salary:<%= job.salary %></h4>
+      <h4>Contract: <%= job.contract %></h4>
+      <h4>Location: <%= job.location %></h4>
+      <span>Application:</span>
+      <% } %>
+      <% } else { %> 
+        <h1>No jobs Found!</h1> <% } %>
+    </div>
+
+  </div>  
+   
+</div>
+<%- include('../includes/footer.ejs') %> <%- include('../includes/end.ejs') %>
