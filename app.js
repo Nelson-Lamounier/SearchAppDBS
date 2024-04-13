@@ -14,9 +14,9 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
-const jobRoutes = require('./routes/job');
+const jobRoutes = require('./routes/job-cart');
 const adminRouter = require('./routes/admin')
-const userRouter = require('./routes/user')
+const userRouter = require('./routes/profile')
 
 
 app.use(bodyParser.urlencoded({extended: false}));

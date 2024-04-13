@@ -41,10 +41,10 @@ exports.postAddPost = (req, res, next) => {
 };
 
 
-
+// Function to get the create job post by Id => this function leads to the edit post section
 exports.getJobById = (req,res, next) =>{
   const jobId =req.params.jobId;
-  Job.findById(jobId, job =>{
+  Job.findByPk(jobId).then(job =>{
     res.render('admin/edit-post', {
       pageTitle: 'Edit Job Post',
       path: '/admin/post',
@@ -64,14 +64,14 @@ exports.getJobs = (req, res, next) => {
 
 };
 
-
+// Function to edit the created post before Posting to the cart 
 exports.getEditJob = (req, res, next) => {
   const editMode = req.query.edit;
   if(!editMode) {
     return res.redirect('/')
   }
   const jobId = req.params.jobId;
-  Job.findById(jobId, job => {
+  Job.findByPk(jobId).then(job => {
     if(!job) {
       return res.redirect('/');
     }
@@ -80,8 +80,10 @@ exports.getEditJob = (req, res, next) => {
       path: ' /admin/edit-post',
       editing: editMode,
       job: job
-    })
-  })
+    });
+    }).catch(err => 
+    console.log(err)
+  )
 }
 
 // This function edit the job posted on the admin user section 
@@ -96,26 +98,30 @@ exports.postEditJob = (req, res, next) => {
   const updatedContract = req.body.contract;
   const updatedLocation = req.body.location;
   const updateddUrl = req.body.jobUrl;
-  const updatedJob = new Job (
-    jobId, 
-    updatedTitle, 
-    updatedDescription, 
-    updatedSalary, 
-    updatedContract, 
-    updatedLocation, 
-    updateddUrl
-  );
-  console.log(updatedJob)
-  updatedJob.save();
-  res.redirect('/admin/posts')
-
+  Job.findByPk(jobId).then(job => {
+    job.title = updatedTitle; 
+    job.description = updatedDescription; 
+    job.salary = updatedSalary; 
+    job.contract = updatedContract; 
+    job.location = updatedLocation; 
+    job.jobUrl = updateddUrl;
+    return job.save()}).then(result => {
+      console.log('UPDATED JOB POST');
+      res.redirect('/admin/posts')
+    }).catch(err => console.log(err)
+    )
 };
 
+// function to delete the created post
 exports.postDeleteJob = (req, res, next) => {
   const jobId = req.body.jobId;
-  Job.deleteByID(jobId);
-  console.log(jobId)
-  res.redirect('/admin/posts')
+  Job.findByPk(jobId).then(job => {
+    return job.destroy();
+  }).then(result => {
+    console.log('DESTROYED PRODUCT');
+    res.redirect('/admin/posts')
+  }).catch(err => console.log(err));
+ 
 }
 
 // exports.getJobs = (req, res, next) => {
