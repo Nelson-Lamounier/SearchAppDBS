@@ -15,7 +15,9 @@ router.get('/published-cart', jobController.getPostedJobs)
 
 router.post('/published-cart', jobController.postPostedJobs)
 
+router.post('/delete-published-item', jobController.postDeletePost)
 
+router.post('/', jobController.postIndex)
 
 
 

@@ -24,7 +24,7 @@ router.post('/edit-post', adminController.postEditJob) // This route edit the jo
 
 router.post('/delete-job', adminController.postDeleteJob) // This route delete the job from created post admin section
 
-
+router.post('/cart', adminController.postCart)
 
 // router.post('/posts', adminController.postAddPost);
 

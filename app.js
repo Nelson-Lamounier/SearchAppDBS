@@ -8,10 +8,12 @@ const bodyParser = require('body-parser');
 
 const errorController = require('./controllers/error')
 const sequelize = require('./util/database')
-const Job = require('./models/job')
+const Job = require('./models/post')
 const User = require('./models/user')
 const Cart = require('./models/cart')
 const CartItem = require('./models/cart-item')
+const Published = require('./models/published')
+const PublishedItem = require('./models/published-item')
 
 const app = express();
 
@@ -50,6 +52,9 @@ User.hasOne(Cart);
 Cart.belongsTo(User);
 Cart.belongsToMany(Job, { through: CartItem})
 Job.belongsToMany(Cart, { through: CartItem});
+Published.belongsTo(User);
+User.hasMany(Published);
+Published.belongsToMany(Job, { through: PublishedItem})
 
 // {force: true}
 // 'npm start' => runs the function 

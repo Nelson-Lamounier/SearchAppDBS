@@ -1,4 +1,4 @@
-const Job = require("../models/job");
+const Job = require("../models/post");
 
 exports.getAddPost = (req, res, next) => {
   res.render("admin/post-job", {
@@ -124,6 +124,25 @@ exports.postDeleteJob = (req, res, next) => {
     res.redirect('/admin/posts')
   }).catch(err => console.log(err));
  
+}
+
+exports.postCart = (req, res, next) => {
+  const postId = req.body.jobId;
+  let fetchedCart;
+  req.user.getCart().then(cart => {fetchedCart = cart; return cart.getJobs( {where: { id: postId}})}).then(jobs => {
+    let job;
+    if(jobs.length > 0) {
+      job = jobs[0]
+    }
+    if (job) {
+      return job
+    }
+    return Job.findByPk(postId)
+  }).then(job => {
+    return fetchedCart.addJob(job)
+  }).then(() => {
+    res.redirect('/')
+  }).catch(err => console.log(err))
 }
 
 // exports.getJobs = (req, res, next) => {

@@ -1,18 +1,57 @@
-const Post = require("../models/cart");
-const Job = require("../models/job");
+const Job = require("../models/post");
 
-// Function to get the main page
-exports.getIndex = (req, res, next) => {
-  res.render("job/index", {
-    pageTitle: "Home",
-  });
+exports.postIndex = (req, res, next) => {
+  let fetchedCart;
+  req.user
+    .getCart()
+    .then(cart => {
+      //Access to the cart
+      fetchedCart = cart;
+      return cart.getJobs();
+    })
+    .then(posts => {
+      return req.user
+        .createPublished()
+        .then(published => {
+          return published.addJobs(posts);
+        })
+        .catch((err) => console.log(err));
+    })
+    .then((result) => {
+      return fetchedCart.setJobs(null);
+    })
+    .then((result) => {
+      res.redirect("/");
+    })
+    .catch((err) => console.log(err));
 };
+
+// Function to get the main page with published posts
+exports.getIndex = (req, res, next) => {
+  req.user
+    .getPublisheds({ include: ["jobs"] })
+    .then(publisheds => {
+      console.log(publisheds);
+      res.render("published/index", {
+        path: "/home",
+        pageTitle: "Search for Jobs",
+        publisheds: publisheds,
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
+// exports.getIndex = (req, res, next) => {
+//   res.render("published/index", {
+//     pageTitle: "Home",
+//   });
+// };
 
 // Function to get the Cart/Posted job page
 exports.getSearchJobs = (req, res, next) => {
-  res.render("job/search-jobs", {
+  res.render("published/search-jobs", {
     pageTitle: "Jobs",
-    path: "/job/search-jobs",
+    path: "/published/search-jobs",
   });
 };
 
@@ -22,8 +61,8 @@ exports.getPostedJobs = (req, res, next) => {
     .getCart()
     .then((cart) => {
       return cart.getJobs().then((postJobs) => {
-        res.render("job/published-cart", {
-          path: "/job/published-cart",
+        res.render("published/published-cart", {
+          path: "/published/published-cart",
           pageTitle: "All Posted Jobs",
           posts: postJobs,
         });
@@ -46,8 +85,8 @@ exports.postPostedJobs = (req, res, next) => {
       if (posts.length > 0) {
         post = posts[0];
       }
-   
-      return Job.findByPk(postId)
+
+      return Job.findByPk(postId);
     })
     .then((post) => {
       return fetchedCart.addJob(post);
@@ -57,9 +96,30 @@ exports.postPostedJobs = (req, res, next) => {
     })
     .catch((err) => console.log(err));
 };
-
+// Function to delete Published Post 'cartItem' sequelize method to access the cart object
 exports.postDeletePost = (req, res, next) => {
   const postId = req.body.jobId;
-  Job.deleteByID(postId);
-  res.redirect("/admin/posts");
+  req.user
+    .getCart()
+    .then((cart) => {
+      return cart.getJobs({ where: { id: postId } });
+    })
+    .then((posts) => {
+      const post = posts[0];
+      return post.cartItem.destroy();
+    })
+    .then((result) => {
+      res.redirect("/admin/posts");
+    })
+    .catch((err) => console.log(err));
 };
+
+// exports.getPublished = (req, res, next) =>{
+//   req.user.getPublished({include: ['posts']}).then(posts => {
+//     res.render('/home', {
+//       path: '/home',
+//       pageTitle: 'Search for Jobs',
+//       posts: posts
+//     })
+//   }).catch(err => console.log(err))
+// }
