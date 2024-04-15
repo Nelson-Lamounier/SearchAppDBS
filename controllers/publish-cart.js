@@ -34,7 +34,7 @@ exports.getIndex = (req, res, next) => {
       console.log(publisheds);
       res.render("published/index", {
         path: "/home",
-        pageTitle: "Search for Jobs",
+        pageTitle: "Home",
         publisheds: publisheds,
       });
     })
@@ -49,9 +49,9 @@ exports.getIndex = (req, res, next) => {
 
 // Function to get the Cart/Posted job page
 exports.getSearchJobs = (req, res, next) => {
-  res.render("published/search-jobs", {
+  res.render("admin/published-cart", {
     pageTitle: "Jobs",
-    path: "/published/search-jobs",
+    path: "/published/published-cart",
   });
 };
 
@@ -61,9 +61,9 @@ exports.getPostedJobs = (req, res, next) => {
     .getCart()
     .then((cart) => {
       return cart.getJobs().then((postJobs) => {
-        res.render("published/published-cart", {
-          path: "/published/published-cart",
-          pageTitle: "All Posted Jobs",
+        res.render("admin/published-cart", {
+          path: "/admin/published-cart",
+          pageTitle: "Admin Publish",
           posts: postJobs,
         });
       });

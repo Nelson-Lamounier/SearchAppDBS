@@ -1,0 +1,62 @@
+<%- include('../includes/head-admin.ejs') %>
+</head>
+<body>
+    <%- include('../includes/nav-admin.ejs') %>
+   <div class="main-container__admin">
+    <div class="vertical-menu">
+      <a href="/" >Home</a>
+      <a href="/admin/post-job">Create Post</a>
+      <a href="/admin/posts" >Manager Post</a>
+      <a href="/published-cart"class="active">Published</a>
+      <a href="#">Link 4</a>    
+ 
+    </div>
+
+  </div>
+    <div class="main-page-content_admin">
+  
+    <div class="main-content">
+      <% if (posts.length > 0) { %> 
+        <div class="page-content-left__admin">
+          <% posts.forEach(p =>  { %>
+            
+          <div class="posts-left-content__admin">
+            <button type="button" class="collapsible"><%= p.title %> </button>
+            <div class="content">
+              <p><%= p.title %> </p>
+              <p><%= p.contract %></p>
+              <p><%= p.description %></p>
+              <p>Posted on:</p>
+              <form action="/delete-published-item" method="POST">
+                <input type="hidden" value="<%= p.id%>" name="jobId">
+                <button type="submit">Delete</button>
+
+              </form>
+
+              <form action="/" method="POST">
+                <input type="hidden" value="<%= p.id%>" name="jobId">
+                <button type="submit">Publish</button>
+          
+              </form>
+            </div>
+
+          </div>
+
+        </a>
+
+          <% }) %>
+          <% } %>
+        
+          </div>
+    </div>
+  </div>
+   <main>
+ 
+
+   
+   <%- include('../includes/end.ejs') %>
+
+
+    </main>
+
+

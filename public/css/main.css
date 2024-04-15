@@ -132,22 +132,32 @@ html {
   color: #262626;
 }
 
+/* End of Section navgation */
+
 /* Search element */
 
 .search-container {
-  margin: 4rem 0;
+  width: 100%;
+  display: flex;
+  padding: 2rem 0;
+  justify-content: center;
+  align-items: center;
+
 }
 
-.search-input {
-  width: 35rem;
+.search-input-left {
+  width: 50rem;
   height: 5rem;
-  background-color: #D4DFE6;
   color: #343a40;
-  border-radius: 3rem;
-  border: none;
-  font-size: 1.6rem;
-  font-weight: 600;
-  cursor: pointer;
+
+
+}
+
+.search-input-right {
+  width: 20rem;
+  height: 5rem;
+  color: #343a40;
+
 }
 
 .search-btn {

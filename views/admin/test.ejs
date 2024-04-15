@@ -1,0 +1,46 @@
+<%- include('../includes/head-form.ejs') %>
+<!-- Sign Up Page -->
+<div class="post-job-page__admin">
+  <%- include('../includes/nav-logged-in.ejs') %>
+ 
+  <div class="page-content__admin">
+
+    <div class="page-content-left__admin">
+      <div class="post-edit-btn__admin">
+        <a href="/admin/edit-post/<%= job.id %>?edit=true" method="POST">Edit</a>
+        <form action="/admin/delete-job" method="POST"> 
+          <input type="hidden" value="<%= job.id %>" name="jobId">
+          <button class="btn-admin" type="submit">Delete</button> 
+        </form>
+          <form action="/published-cart" method="POST"> 
+        <button class="btn-admin" type="submit">Submit</button>
+        <input type="hidden" name="jobId" value="<%= job.id %>">
+      </form>
+         
+      </div>
+      <div class="edit-page-format__admin">
+        <span>Application ID: <%= job.id %></span>
+      <h1><strong>Title:</strong> <%= job.title %></h1>
+      <h2><strong>Description:</strong> <%=  job.description %> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo distinctio quo ratione pariatur a, quisquam, fuga repellat, unde accusantium eius deleniti numquam commodi provident blanditiis cum quas rem non similique? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, nam sapiente? Sunt, odio ipsa porro beatae amet facilis aperiam repudiandae veniam ipsum officiis, maxime architecto alias eveniet? Pariatur, veritatis sed. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus in quis voluptatum, harum laboriosam accusantium! Animi, repellendus cum, praesentium ducimus facere voluptatibus voluptates hic corrupti, ea maxime earum dicta similique?</h2>
+      <h2><strong>Salary:</strong> <%= job.salary %></h2>
+      <h2><strong>Contract:</strong> <%= job.contract %> </h2>
+      <h2><strong>Location:</strong> <%= job.location %></h2>
+     
+    </div>
+    </div>
+
+
+    <div class="container-right__admin">
+      <h1>Applicants</h1>
+      <button type="button" class="collapsible">User</button>
+      <div class="content">
+
+        <p>Posted on:</p>
+        <a href="/admin/edit-post/<%= job.id %>">USer</a>
+      </div>
+    </div>
+
+  </div>  
+   
+</div>
+<%- include('../includes/footer.ejs') %> <%- include('../includes/end.ejs') %>

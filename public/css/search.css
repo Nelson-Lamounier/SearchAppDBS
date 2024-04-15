@@ -1,9 +1,15 @@
+
 .jobs-search-page-content {
   width: 100%;
   display: flex;
   justify-content: space-between;
   padding: 2rem 10rem;
+}
 
+.search-page {
+  width: 100%;
+  display: flex;
+  background-color: #e6e6e6;
 }
 
 .jobs-search-page-content-left {
@@ -43,6 +49,7 @@
   border-radius: 0.5rem;
   padding: 1.6rem;
   margin: 1.6rem 0;
+
 }
 .jobs-search-container-right {
   border: 0.1rem solid #ccc;

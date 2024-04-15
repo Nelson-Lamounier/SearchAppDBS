@@ -2,16 +2,11 @@
 
 .post-job-page__admin {
   width: 100%;
-  background: linear-gradient(
-    to bottom,
-    #0c192b,
-    #ffffff 70%
-  );
+  background-color:#ffffff ;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem 1rem;
-  transition: height 0.3s ease;
+  position: relative;
+
+
 }
 
 .posts-left-content__admin{
@@ -30,6 +25,9 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+  position: absolute;
+  top: 5rem;
+  left: 20rem;
   
 }
 
@@ -244,7 +242,7 @@
   background-color: #eee;
   color: #444;
   cursor: pointer;
-  padding: 18px;
+  padding: 1.8rem;
   width: 100%;
   border: none;
   text-align: left;
@@ -276,6 +274,33 @@
   margin: 5rem 0 -4rem 5rem;
 }
 
+.vertical-menu {
+  width: 20rem; /* Set a width if you like */
+  height: 100vh;
+  background-color: #0c192b;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+
+  z-index: 100; /* Ensure the sticky side menu appears above other content */
+}
+
+.vertical-menu a {
+  background-color: #eee; /* Grey background color */
+  color: black; /* Black text color */
+  display: block; /* Make the links appear below each other */
+  padding: 12px; /* Add some padding */
+  text-decoration: none; /* Remove underline from links */
+}
+
+.vertical-menu a:hover {
+  background-color: #ccc; /* Dark grey background on mouse-over */
+}
+
+.vertical-menu a.active {
+  background-color: #04AA6D; /* Add a green color to the "active/current" link */
+  color: white;
+}
 
 
 

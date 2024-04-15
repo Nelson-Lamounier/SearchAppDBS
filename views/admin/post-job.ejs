@@ -1,103 +1,116 @@
-<%- include('../includes/head-form.ejs') %>
+<%- include('../includes/head-admin.ejs') %>
+</head>
+<body>
+    <%- include('../includes/nav-admin.ejs') %>
+   <div class="main-container__admin">
+    <div class="vertical-menu">
+      <a href="/">Home</a>
+      <a href="/admin/post-job"class="active">Create Post</a>
+      <a href="/admin/posts">Manager Post</a>
+      <a href="/published-cart">Published</a>
+      <a href="#">Link 4</a>    
+ 
+    </div>
+  </div>
+    <div class="main-page-content_admin">
+     
+    <div class="main-content">
+     <div class="create-post">
+        <form id="regForm"  action="/admin/<% if (editing) {%>edit-post<% } else { %>post-job<%}%>" method="POST">
+       
 
-<div class="post-job-page">
-  <%- include('../includes/nav-logged-in.ejs') %>
-  <div class="post-page-content">
-    <div class="create-post-content__form">
-      <div class="create-post__page">
-        <div class="create-post-content">
-          <div class="login-page-logo logo">
-            <span class="p-1">S</span>
-            <span class="p-2">S</span>
-            <span>Smart</span><span>Path</span>
-          </div>
-          <div class="form-subheader">
-            <h2>Descriptio:</h2>
-          </div>
-          <form class="post-page-form" action="/admin/<% if (editing) {%>edit-post<% } else { %>post-job<%}%>" method="POST">
-            <input
-              type="text"
-              class="form-login-input"
-              placeholder="Job title"
-              name="title"
-              id="title"
-              value="<% if (editing) { %><%= job.title %><% } %>"
-            />
-
-            <div class="flex-box text-edit">
-              <div class="row">
-                <div class="col">
-                  <!-- Adding different buttons for 
-                         different functionality-->
-                  <!--onclick attribute is added to give  
-                        button a work to do when it is clicked-->
-                  <button
-                    type="button"
-                    onclick="f1()"
-                    class="shadow-sm btn btn-outline-secondary"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="Bold Text"
-                  >
-                    Bold
-                  </button>
-                  <button
-                    type="button"
-                    onclick="f2()"
-                    class="shadow-sm btn btn-outline-success"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="Italic Text"
-                  >
-                    Italic
-                  </button>
-                  <button
-                    type="button"
-                    onclick="f3()"
-                    class="shadow-sm btn btn-outline-primary"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="Left Align"
-                  >
-                    <i class="fas fa-align-left"></i>
-                  </button>
-                  <button
-                    type="button"
-                    onclick="f4()"
-                    class="btn shadow-sm btn-outline-secondary"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="Center Align"
-                  >
-                    <i class="fas fa-align-center"></i>
-                  </button>
-                  <button
-                    type="button"
-                    onclick="f5()"
-                    class="btn shadow-sm btn-outline-primary"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="Right Align"
-                  >
-                    <i class="fas fa-align-right"></i>
-                  </button>
-                  <button
-                    type="button"
-                    onclick="f9()"
-                    class="btn shadow-sm btn-outline-primary side"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="Tooltip on top"
-                  >
-                    Clear Text
-                  </button>
-                </div>
+        <h1>Create a new post</h1>
+        
+        <!-- One "tab" for each step in the form: -->
+        <div class="tab">Title:
+      
+          <p><input oninput="this.className = ''"
+            type="text"
+            class=""
+            placeholder="Job title"
+            name="title"
+            id="title"
+            value="<% if (editing) { %><%= job.title %><% } %>"
+          />
+            
+           </p>
+  
+        </div>
+        
+        <div class="tab">Description:
+          <div class="flex-box text-edit">
+            <div class="row">
+              <div class="col">
+                <!-- Adding different buttons for 
+                       different functionality-->
+                <!--onclick attribute is added to give  
+                      button a work to do when it is clicked-->
+                <button
+                  type="button"
+                  onclick="f1()"
+                  class="shadow-sm btn btn-outline-secondary"
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="Bold Text"
+                >
+                  Bold
+                </button>
+                <button
+                  type="button"
+                  onclick="f2()"
+                  class="shadow-sm btn btn-outline-success"
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="Italic Text"
+                >
+                  Italic
+                </button>
+                <button
+                  type="button"
+                  onclick="f3()"
+                  class="shadow-sm btn btn-outline-primary"
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="Left Align"
+                >
+                  <i class="fas fa-align-left"></i>
+                </button>
+                <button
+                  type="button"
+                  onclick="f4()"
+                  class="btn shadow-sm btn-outline-secondary"
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="Center Align"
+                >
+                  <i class="fas fa-align-center"></i>
+                </button>
+                <button
+                  type="button"
+                  onclick="f5()"
+                  class="btn shadow-sm btn-outline-primary"
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="Right Align"
+                >
+                  <i class="fas fa-align-right"></i>
+                </button>
+                <button
+                  type="button"
+                  onclick="f9()"
+                  class="btn shadow-sm btn-outline-primary side"
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="Tooltip on top"
+                >
+                  Clear Text
+                </button>
               </div>
             </div>
-            <br />
-
+          </div>
+          <p>
             <div class="text-box">
-              <textarea
+              <textarea oninput="this.className = ''"
                 class="form-login-input"
                 rows="15"
                 cols="100"
@@ -106,55 +119,81 @@
                 id="description"
                 
               ><% if (editing) { %><%= job.description %><% } %></textarea>
-            </div>
+            </div></p>
 
-            <div class="form-terms">
-              <label for="">Salary:</label>
-              <input
-                type="text"
-                placeholder="Hour/Year"
-                class="form-login-input"
-                name="salary"
-                id="salary"
-                value="<% if (editing) { %><%= job.salary %><% } %>"
-              />
-              <label for="">Contract:</label>
-              <input
-                type="text"
-                placeholder="Full/Part Time"
-                class="form-login-input"
-                name="contract"
-                id="contract"
-                value="<% if (editing) { %><%= job.contract %><% } %>"
-              />
-              <label for="">Location:</label>
-              <input
-                type="text"
-                placeholder="Dublin"
-                class="form-login-input"
-                name="location"
-                id="location"
-                value="<% if (editing) { %><%= job.location %><% } %>"
-              />
-            </div>
-            <input
-              type="text"
-              class="form-login-input"
-              placeholder="Job Url"
-              name="jobUrl"
-              id="jobUrl"
-              value="<% if (editing) { %><%= job.jobUrl %><% } %>"
-            /> <% if (editing) { %> 
-            <input type="hidden" value="<%= job.id %>" name="jobId">
-            <% } %>
-            <button type="submit" class="form-login-btn" value="Submit"><% if (editing) { %> Update <% } else { %> Sunmit <% } %>
-              
-            </button>
-            <a href="#" class="form-login-link">Preview</a>
-          </form>
         </div>
+        
+        <div class="tab">Terms:
+          <p><input oninput="this.className = ''"
+            type="text"
+            placeholder="Hour/Year"
+            class="form-login-input"
+            name="salary"
+            id="salary"
+            value="<% if (editing) { %><%= job.salary %><% } %>"
+          /></p>
+          <p><input oninput="this.className = ''"
+            type="text"
+            placeholder="Full/Part Time"
+            class="form-login-input"
+            name="contract"
+            id="contract"
+            value="<% if (editing) { %><%= job.contract %><% } %>"
+          /></p>
+          <p><input oninput="this.className = ''"
+            type="text"
+            placeholder="Dublin"
+            class="form-login-input"
+            name="location"
+            id="location"
+            value="<% if (editing) { %><%= job.location %><% } %>"
+          /></p>
+        </div>
+        
+        <div class="tab">Job URL:
+          <p>          <input oninput="this.className = ''"
+            type="text"
+            class="form-login-input"
+            placeholder="Job Url"
+            name="jobUrl"
+            id="jobUrl"
+            value="<% if (editing) { %><%= job.jobUrl %><% } %>"
+          /> </p>
+         
+        </div>
+        
+        <div style="overflow:auto;">
+          <div style="float:right;">
+            <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+            <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+            <% if (editing) { %> 
+              <input type="hidden" value="<%= job.id %>" name="jobId">
+              <% } %>
+              <button onclick="nextPrev(1)"  type="submit" class="form-login-btn" value="Submit"><% if (editing) { %> Update <% } else { %> Sunmit <% } %>
+                
+              </button>
+          </div>
+        </div>
+        
+        <!-- Circles which indicates the steps of the form: -->
+        <div style="text-align:center;margin-top:40px;">
+          <span class="step"></span>
+          <span class="step"></span>
+          <span class="step"></span>
+          <span class="step"></span>
+        </div>
+        
+        </form>
       </div>
     </div>
   </div>
-</div>
-<%- include('../includes/footer.ejs') %> <%- include('../includes/end.ejs') %>
+   <main>
+ 
+
+   
+ <%- include('../includes/end.ejs') %>
+
+
+    </main>
+
+

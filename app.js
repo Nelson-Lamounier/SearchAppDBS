@@ -23,6 +23,7 @@ app.set('views', 'views');
 const jobRoutes = require('./routes/job-cart');
 const adminRouter = require('./routes/admin')
 const userRouter = require('./routes/profile')
+const authRouter = require('./routes/auth')
 
 
 app.use(bodyParser.urlencoded({extended: false}));
@@ -41,6 +42,8 @@ app.use((req, res, next) => {
 app.use(jobRoutes);
 app.use('/admin', adminRouter);
 app.use('/user', userRouter);
+app.use(authRouter)
+
 
 app.use(errorController.get404)
 
