@@ -31,11 +31,11 @@ exports.getIndex = (req, res, next) => {
   req.user
     .getPublisheds({ include: ["jobs"] })
     .then(publisheds => {
-      console.log(publisheds);
       res.render("published/index", {
         path: "/home",
         pageTitle: "Home",
         publisheds: publisheds,
+        isAuthenticated: req.session.isLoggedIn
       });
     })
     .catch((err) => console.log(err));
@@ -52,6 +52,7 @@ exports.getSearchJobs = (req, res, next) => {
   res.render("admin/published-cart", {
     pageTitle: "Jobs",
     path: "/published/published-cart",
+    isAuthenticated: req.session.isLoggedIn
   });
 };
 
@@ -65,6 +66,7 @@ exports.getPostedJobs = (req, res, next) => {
           path: "/admin/published-cart",
           pageTitle: "Admin Publish",
           posts: postJobs,
+          isAuthenticated: req.session.isLoggedIn
         });
       });
     })

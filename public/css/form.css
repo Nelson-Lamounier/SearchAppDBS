@@ -1,29 +1,14 @@
-/* Create post Page */
-
-
-.post-job-page {
+/* Login Page */
+.container {
   width: 100%;
-  background: linear-gradient(
-    to bottom,
-    #0c192b,
-    #ffffff 50%
-  );
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 150vh;
 }
-
-.create-post__page {
+.login-page {
   width: 100%;
-
+  height: 100vh;
+  position: relative;
 }
 
-.post-page-content {
-  margin: 10rem 0 ;
-}
-
-.create-post-content {
+.login-page-content {
   position: absolute;
   top: 12%;
   left: 50%;
@@ -33,17 +18,6 @@
   align-items: center;
   border: 0.1rem solid #cfcfcf;
   padding: 3rem;
-}
-
-.create-post-content__form {
-  width: 100%;
-  border-right: 0.1rem solid #b1b1b1;
-
-}
-.create-post-content-right {
-  width: 40%;
-  padding: 3rem 0 3rem 3rem;
-  color: #555;
 }
 
 .login-page-logo {
@@ -66,19 +40,27 @@
   color: #32a4f0;
 }
 
-.post-page-form {
-  width: 100%;
+.login-page-form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.post-page-form input {
-  width: 85rem;
+.login-page-form input {
+  width: 37rem;
   height: 4.5rem;
   margin: 1rem;
   border-radius: 0.5rem;
 }
+
+.sign-up-page-form input {
+  width: 60rem;
+  height: 4.5rem;
+  margin: 1rem;
+  border-radius: 0.5rem;
+}
+
+
 
 .form-login-input {
   padding: 0 1.5rem;
@@ -88,15 +70,14 @@
 
 .form-login-btn {
   background-color: #036bb1;
+  width: 95%;
   color: #fff;
-  border: 0.5rem solid #036bb1;
+  border: 0.1rem solid #036bb1;
   font-size: 1.8rem;
   font-weight: 600;
   cursor: pointer;
-  padding: 0.5rem 10rem;
+  padding: 0.7rem;
   border-radius: 0.5rem;
-  margin-top: 2rem;
-
 }
 
 .form-login-link {
@@ -105,7 +86,35 @@
   margin: 1.2rem 0 1rem 0;
 }
 
+.login-page-form span {
+  width: 2rem;
+  font-size: 1.8rem;
+  color: #888;
+  margin: 1rem 0;
+  position: relative;
+}
 
+.login-page-form span::before {
+  content: "";
+  width: 16rem;
+  height: 0.1rem;
+  background-color: #ccc;
+  position: absolute;
+  top: 50%;
+  right: 3.5rem;
+  transform: translateY(-50%);
+}
+
+.login-page-form span::after {
+  content: "";
+  width: 16rem;
+  height: 0.1rem;
+  background-color: #ccc;
+  position: absolute;
+  top: 50%;
+  left: 3.5rem;
+  transform: translateY(-50%);
+}
 
 .form-signup-btn {
   background-color: #dbe8ec;
@@ -114,41 +123,4 @@
   font-weight: 600;
   cursor: pointer;
 }
-
-.form-terms {
-  display: flex;
-  padding: 3rem;
-}
-
-.form-terms input {
-  width: 18rem;
-
-}
-
-.post-page-form label {
-  font-size: 2rem;
-  display: flex;
-  align-items: center;
-  
-}
-
-.post-page-form button{
-  font-size: 1.5rem;
-}
-
-.text-align__form {
-  text-align: left;
-}
-
-.text-edit {
-  width: 85rem;
-  padding: 0.5rem 0;
-  color: #036bb1;
-}
-
-.form-subheader{
-  font-weight: 400;
-  text-align: left;
-  width: 85rem;
-  padding: 1rem 0;
-}
+/* End of Login Page */

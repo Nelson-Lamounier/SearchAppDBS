@@ -1,5 +1,5 @@
 <div class="container">
-  <section class="<%= pageTitle === 'Home' | pageTitle === 'All Posted Jobs' ? 'section-1' : 'section-1__nav-bar'%>">
+  <section class="<%= pageTitle === 'Home'  | pageTitle === 'All Posted Jobs' ? 'section-1' : 'section-1__nav-bar'%>">
     <div class="navbar-wrapper">
       <nav class="navbar">
         <div class="menu">
@@ -12,24 +12,37 @@
         </div>
         <div class="navbar-logo logo">
           <span class="p-1">S</span>
-          <span class="p-2">S</span>
+          <span class="p-2">P</span>
           SmartPath
         </div>
         <ul class="nav-list">
+          <% if (isAuthenticated) { %>
           <li class="nav-list-item dropdown-hover">
-            <a href="#" class="nav-list-link show-dropdown">All Jobs</a>
+            <a href="admin/post-job" class="nav-list-link show-dropdown">Admin</a>
           </li>
           <li class="nav-list-item dropdown-hover">
-            <a href="#" class="nav-list-link show-dropdown">Company review</a>
+            <a href="/published" class="nav-list-link show-dropdown">All Posts</a>
           </li>
+          <li class="nav-list-item dropdown-hover">
+            <a href="/admin/post-job" class="nav-list-link show-dropdown">Create a Post</a>
+          </li>
+          <%  } %>
           <li class="nav-list-item">
-            <a href="#" class="nav-list-link">Employers / Post Job</a>
+            <a href="/" class="nav-list-link">Home</a>
           </li>
+         
         </ul>
         <div class="navbar-buttons">
-          <button class="navbar-btn login-btn login">Login</button>
-          <button class="navbar-btn signup-btn signup">Signup</button>
+          <a href="/sign-up" class="navbar-btn" type="submit">Sign-Up</a> 
+          <% if (!isAuthenticated) { %> 
+          <a href="/login" class="navbar-btn" type="submit">Login</a> 
+          <% } else { %>
+            <form action="/logout" method="POST">
+          <button type="submit" class="navbar-btn signup-btn signup">Logout</button>
+        </form>
+         
         </div>
+        <%  } %>
       </nav>
 
     </div>

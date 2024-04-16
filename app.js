@@ -5,6 +5,8 @@ const path = require('path');
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const session = require('express-session');
+const MysqlStore = require("express-mysql-session")(session);
 
 const errorController = require('./controllers/error')
 const sequelize = require('./util/database')
@@ -15,7 +17,19 @@ const CartItem = require('./models/cart-item')
 const Published = require('./models/published')
 const PublishedItem = require('./models/published-item')
 
+// MySQL session store
+const options = {
+  host: 'localhost',
+  port:3306,
+  user: 'root',
+  password: 'Dublin2024',
+  database: 'job-search'
+}
+
+
+
 const app = express();
+const sessionStore = new MysqlStore(options);
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -23,14 +37,20 @@ app.set('views', 'views');
 const jobRoutes = require('./routes/job-cart');
 const adminRouter = require('./routes/admin')
 const userRouter = require('./routes/profile')
-const authRouter = require('./routes/auth')
+const authRouter = require('./routes/auth');
 
 
+
+// Express session middleware
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({key: 'session_cookie', secret:'my secret', store: sessionStore , resave: false, saveUninitialized: false}))
 
 // sequelize register this function but never run it, this is only run for incoming request
 app.use((req, res, next) => {
+  // if (!req.session.user) {
+  //   return next()
+  // }
   User.findByPk(1).then(user => {
     req.user = user;
     next()

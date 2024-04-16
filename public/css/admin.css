@@ -100,6 +100,8 @@ html {
   align-items: center;
 }
 
+
+
 .navbar-btn {
   width: 8rem;
   padding: 0.7rem;
@@ -180,7 +182,12 @@ html {
 }
 
 
-
+.section-1{
+  width: 100%;
+  background-color:#0c192b; 
+  background-size: cover;
+  position: relative;
+}
 
 
 

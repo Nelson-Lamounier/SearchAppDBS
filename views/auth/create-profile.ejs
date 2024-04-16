@@ -1,0 +1,45 @@
+<%- include('../includes/head-form.ejs') %>
+<!-- Sign Up Page -->
+<div class="post-job-page__admin">
+  <%- include('../includes/navigation.ejs') %>
+
+  <div class="container">
+    <div class="front-page"> 
+       <!-- Login Page -->
+ 
+        <div class="login-page">
+            <div class="login-page-content">
+                <div class="login-page-logo logo">
+                    <span class="p-1">S</span>
+                    <span class="p-2">P</span>
+                    <span>Smart</span><span>Path</span>
+                </div>
+                <form class="sign-up-page-form" action="/login" method="POST">
+                  <input
+                    type="text"
+                    class="form-login-input"
+                    placeholder="First name"
+                    name="firstName"
+                  />
+                  <input type="text" class="form-login-input" placeholder="Last name" name="lastName"/>
+                  <input type="text" class="form-login-input" placeholder="Headline" name="headline"/>
+                  <input type="text" class="form-login-input" placeholder="Phone" name="phone"/>
+                  <input type="text" class="form-login-input" placeholder="Email" name="email" />
+                  <input type="text" class="form-login-input" placeholder="Location" name="location" />
+                  <input type="password" class="form-login-input" placeholder="password" name="Password" />
+                  <input type="password" class="form-login-input" placeholder="Confirm password" name="Password" />
+                  <button type="submit" class="form-login-btn">Sign up</button>      
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+    </div>
+        <!-- End of Login Page -->
+
+        <%- include('../includes/end.ejs') %>
+
+
+</div>
+<%- include('../includes/footer.ejs') %> <%- include('../includes/end.ejs') %>
