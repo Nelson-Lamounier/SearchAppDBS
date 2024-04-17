@@ -1,5 +1,16 @@
 const Job = require("../models/post");
 
+exports.getPosts = (req, res, next) => {
+  Job.findAll()
+  .then(jobs => {
+    res.render('main/post-list', {
+      posts: jobs,
+      pageTitle: "All Post",
+      path:'/posts'
+    })
+  }).catch(err => console.log(err))
+}
+
 exports.postIndex = (req, res, next) => {
   let fetchedCart;
   req.user

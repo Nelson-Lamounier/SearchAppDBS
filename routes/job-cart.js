@@ -9,6 +9,8 @@ const router = express.Router();
 
 router.get('/', jobController.getIndex);
 
+router.get('/posts', jobController.getPosts)
+
 // router.get('/search-jobs', jobController.getPostedJobs)
 
 router.get('/published-cart', jobController.getPostedJobs)

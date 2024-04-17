@@ -20,7 +20,6 @@ const PublishedItem = require('./models/published-item')
 // MySQL session store
 const options = {
   host: 'localhost',
-  port:3306,
   user: 'root',
   password: 'Dublin2024',
   database: 'job-search'
@@ -48,10 +47,10 @@ app.use(session({key: 'session_cookie', secret:'my secret', store: sessionStore 
 
 // sequelize register this function but never run it, this is only run for incoming request
 app.use((req, res, next) => {
-  // if (!req.session.user) {
-  //   return next()
-  // }
-  User.findByPk(1).then(user => {
+  if (!req.session.user) {
+    return next()
+  }
+  User.findByPk(req.session.user.id).then(user => {
     req.user = user;
     next()
   }).catch(err => {
@@ -81,23 +80,11 @@ Published.belongsToMany(Job, { through: PublishedItem})
 
 // {force: true}
 // 'npm start' => runs the function 
-sequelize.sync().then(result => {
-  return User.findByPk(1)
-  // console.log(result);
- 
-}).then(user => {
-  if(!user) {
-    return User.create({name: 'Nelson', email:'test@test.com'});
-  }
-  return user;
-} 
-).then(user => {
-  // console.log(user)
-  return user.createCart()
-
-}).then(cart => {
+sequelize.sync().then(cart => {
   app.listen(3000);
 }).catch(err => {
   console.log(err);
 })
+
+
 
