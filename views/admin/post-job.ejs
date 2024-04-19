@@ -169,9 +169,11 @@
             <% if (editing) { %> 
               <input type="hidden" value="<%= job.id %>" name="jobId">
               <% } %>
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
               <button onclick="nextPrev(1)"  type="submit" class="form-login-btn" value="Submit"><% if (editing) { %> Update <% } else { %> Sunmit <% } %>
                 
               </button>
+
           </div>
         </div>
         

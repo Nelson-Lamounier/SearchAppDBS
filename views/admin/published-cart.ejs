@@ -29,12 +29,14 @@
               <p>Posted on:</p>
               <form action="/delete-published-item" method="POST">
                 <input type="hidden" value="<%= p.id%>" name="jobId">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                 <button type="submit">Delete</button>
 
               </form>
 
-              <form action="/" method="POST">
+              <form action="/admin-posted" method="POST">
                 <input type="hidden" value="<%= p.id%>" name="jobId">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                 <button type="submit">Publish</button>
           
               </form>

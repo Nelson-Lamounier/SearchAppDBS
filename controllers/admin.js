@@ -8,7 +8,8 @@ exports.getAddPost = (req, res, next) => {
     pageTitle: "Post a Job",
     path: "/admin/post-job",
     editing: false,
-    isAuthenticated: req.session.isLoggedIn
+ 
+    
   });
 };
 
@@ -16,7 +17,8 @@ exports.getPostAdmin = (req, res, next) => {
   res.render("admin/posts", {
     pageTitle: "Manager Posts",
     path: "/admin/posts",
-    isAuthenticated: req.session.isLoggedIn
+
+    
   });
 };
 
@@ -55,7 +57,8 @@ exports.getJobById = (req,res, next) =>{
       pageTitle: 'Edit Job Post',
       path: '/admin/post',
       job: job,
-      isAuthenticated: req.session.isLoggedIn
+  
+      
     })
   })
 
@@ -66,7 +69,8 @@ exports.getJobs = (req, res, next) => {
       jps: jobs,
       pageTitle: "Admin Jobs Manager",
       path: "/admin/posts",
-      isAuthenticated: req.session.isLoggedIn
+
+      
       // hasJobs: jobs.length > 0,
     });}).catch(err => {console.log(err)});
 
@@ -89,7 +93,6 @@ exports.getEditJob = (req, res, next) => {
       path: ' /admin/edit-post',
       editing: editMode,
       job: job,
-      isAuthenticated: req.session.isLoggedIn
     });
     }).catch(err => console.log(err))
 

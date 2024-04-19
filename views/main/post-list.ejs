@@ -3,75 +3,85 @@
 </head>
 
 <body>
+  <%- include('../includes/navigation.ejs') %>
+
+  <%- include('../includes/container.ejs') %>
+<body>
 
    
-      <div class="search-page">
-        
-        <div class="jobs-search-page-content" id="main-content">
-        
-            <div class="jobs-search-page-content-left">
-              <% if (posts.length <= 0) { %> 
-                <h1>Nothing there!</h1>
-                <% } else { %> 
-                  <% for (let post of posts) { %>
-              <div class="jobs-search-container">
-              
 
-                <a href=""><%= post.title %>   </a>
-                  <p>Company Name</p>
-                <p><%= post.title %> </p>
-                <p><%= post.contract %></p>
-                <p><%= post.description %></p>
-                <p><%= post.id %></p>
-              </div>
-              <% } %>
-              <% } %>
-            
+   
+    <div class="search-page">
+      
+      <div class="jobs-search-page-content" id="main-content">
+      
+          <div class="jobs-search-page-content-left">
+            <% if (publisheds.length <= 0) { %> 
+              <h1>Nothing there!</h1>
+              <% } else { %> 
+                <% publisheds.forEach(published =>  { %>
+
           
-         
-             
+                  <% published.jobs.forEach(job => {%> 
+            <div class="jobs-search-container">
             
-              <!-- <div class="jobs-search-container">
-                <a href="">Job Title</a>
-                <p><span >Rebecca Flex.</span> CEO at Company.</p>
-                <p>No one is better than John Doe.</p>
-              </div> -->
+
+              <a href=""><%= job.title %>   </a>
+                <p>Company Name</p>
+              <p><%= job.title %> </p>
+              <p><%= job.contract %></p>
+              <p><%= job.description %></p>
+              <p><%= job.id %></p>
             </div>
-            <div class="jobs-search-page-content-right">
-  
-              <div class="jobs-search-container-right" id="scroll-container">
-                <h1>Job Title </h1> 
-                  <p> Company Name</p>
-                <p> Location</p>
-                <p>Full-Time</p>
-                <button class="btn-apply">Apply</button>
-                <button class="btn-save"><i class="fa fa-bookmark"></i></button>
-                <div class="scroll-container" >
-                  <div class="content" >
-                    <div class="subcontainer-info"> 
-                    <h1> Job details</h1>
-                    <p> Location</p>
-                  </div>
+            <% }) %>
+            <% }) %>
+            <% } %>
+        
+       
+           
+          
+            <!-- <div class="jobs-search-container">
+              <a href="">Job Title</a>
+              <p><span >Rebecca Flex.</span> CEO at Company.</p>
+              <p>No one is better than John Doe.</p>
+            </div> -->
+          </div>
+          <div class="jobs-search-page-content-right">
+
+            <div class="jobs-search-container-right" id="scroll-container">
+              <h1>Job Title </h1> 
+                <p> Company Name</p>
+              <p> Location</p>
+              <p>Full-Time</p>
+              <button class="btn-apply">Apply</button>
+              <button class="btn-save"><i class="fa fa-bookmark"></i></button>
+              <div class="scroll-container" >
+                <div class="content" >
                   <div class="subcontainer-info"> 
-                    <h1> Location</h1>
+                  <h1> Job details</h1>
+                  <p> Location</p>
+                </div>
+                <div class="subcontainer-info"> 
+                  <h1> Location</h1>
+                  <p> Location</p>
+                </div>
+                <div class="subcontainer-info"> 
+                  <h1> Full job description</h1>
                     <p> Location</p>
-                  </div>
-                  <div class="subcontainer-info"> 
-                    <h1> Full job description</h1>
-                      <p> Location</p>
-                      <p>Full-Time</p>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium necessitatibus ipsa libero atque officia natus quasi voluptas, ducimus quisquam. Soluta esse quasi doloribus quisquam corporis tempore sed consequatur possimus vel.</p>
-                  </div>
-  
-                  </div>
+                    <p>Full-Time</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium necessitatibus ipsa libero atque officia natus quasi voluptas, ducimus quisquam. Soluta esse quasi doloribus quisquam corporis tempore sed consequatur possimus vel.</p>
+                </div>
+
                 </div>
               </div>
-
-  
             </div>
-        </div>
 
-    </div>
+
+          </div>
+      </div>
+
+  </div>
+ 
    
 
 

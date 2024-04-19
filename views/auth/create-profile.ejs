@@ -28,8 +28,9 @@
                   <input type="text" class="form-login-input" placeholder="Location" name="location" />
                   <input type="password" class="form-login-input" placeholder="Password" name="password" />
                   <input type="password" class="form-login-input" placeholder="Confirm password" name="confirmPassword" />
+                  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                   <button type="submit" class="form-login-btn">Sign up</button>      
-
+ 
                 </form>
             </div>
         </div>

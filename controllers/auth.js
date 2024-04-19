@@ -5,9 +5,13 @@ exports.getLogin = (req, res, next) => {
   res.render("auth/login", {
     path: "/login",
     pageTitle: "Login",
-    isAuthenticated: false,
+    
+
   });
 };
+
+// isAuthenticated: false,
+// csrfToken: req.csrfToken()
 
 // Function to gather user login information / Cookies
 exports.postLogin = (req, res, next) => {
@@ -52,7 +56,7 @@ exports.getSignUp = (req, res, next) => {
   res.render("auth/create-profile", {
     path: "/signup",
     pageTitle: " Sign Up",
-    isAuthenticated: false,
+  
   });
 };
 
@@ -95,3 +99,7 @@ exports.postSignup = (req, res, next) => {
     })
     .catch((err) => console.log(err));
 };
+
+// It is  ahuge problem if we want to pass some some data into the rendered view when we are redering, beacuse upon a redirect, technically a new request is started, a new request to /login, /signup, etc. That is because on that new request, we don't know we got here because the user entered an invalid e-mail or name formt. When we trigger the new request, it is treated in the same wasy as a request that we triggered by checking on the login button in our menu => with that we have no way of finding out if we provide an error message or not 
+// => to solve the above mentioned issue we store some data before we redirect whcih we then use in the brand new request
+// To store data across request, we need a session

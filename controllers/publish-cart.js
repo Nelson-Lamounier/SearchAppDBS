@@ -1,12 +1,13 @@
 const Job = require("../models/post");
+const Published = require("../models/published");
 
 exports.getPosts = (req, res, next) => {
-  Job.findAll()
-  .then(jobs => {
+  Published.findAll({ include: ["jobs"] })
+  .then(publisheds => {
     res.render('main/post-list', {
-      posts: jobs,
       pageTitle: "All Post",
-      path:'/posts'
+      path:'/',
+      publisheds: publisheds,
     })
   }).catch(err => console.log(err))
 }
@@ -32,7 +33,7 @@ exports.postIndex = (req, res, next) => {
       return fetchedCart.setJobs(null);
     })
     .then((result) => {
-      res.redirect("/");
+      res.redirect("/admin-posted");
     })
     .catch((err) => console.log(err));
 };
@@ -42,11 +43,10 @@ exports.getIndex = (req, res, next) => {
   req.user
     .getPublisheds({ include: ["jobs"] })
     .then(publisheds => {
-      res.render("published/index", {
-        path: "/home",
-        pageTitle: "Home",
+      res.render("published/admin-posted", {
+        path: "/admin-posted",
+        pageTitle: "Admin Search",
         publisheds: publisheds,
-        isAuthenticated: req.session.isLoggedIn
       });
     })
     .catch((err) => console.log(err));
@@ -63,23 +63,31 @@ exports.getSearchJobs = (req, res, next) => {
   res.render("admin/published-cart", {
     pageTitle: "Jobs",
     path: "/published/published-cart",
-    isAuthenticated: req.session.isLoggedIn
   });
 };
 
 // Function to display the job post on the main page with the Post information extracted from the jobs.json file
 exports.getPostedJobs = (req, res, next) => {
   req.user
-    .getCart()
+    .createCart()
     .then((cart) => {
-      return cart.getJobs().then((postJobs) => {
-        res.render("admin/published-cart", {
-          path: "/admin/published-cart",
-          pageTitle: "Admin Publish",
-          posts: postJobs,
-          isAuthenticated: req.session.isLoggedIn
-        });
-      });
+      if (cart) {
+        req.user.getCart().then(
+          cart => {
+            return cart.getJobs().then((postJobs) => {
+              res.render("admin/published-cart", {
+                path: "/admin/published-cart",
+                pageTitle: "Admin Publish",
+                posts: postJobs,
+             
+              });
+            }).catch(err => console.log(err))
+          }
+        ).catch(err => console.log(err))
+      }
+
+    }).then(cart => {
+      return cart
     })
     .catch((err) => console.log(err));
 };

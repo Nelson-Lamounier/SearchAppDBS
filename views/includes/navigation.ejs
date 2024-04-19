@@ -1,5 +1,5 @@
 <div class="container">
-  <section class="<%= pageTitle === 'Home'  | pageTitle === 'All Posted Jobs' ? 'section-1' : 'section-1__nav-bar'%>">
+  <section class="<%= pageTitle === 'Home'  | pageTitle === 'All Post' ? 'section-1' : 'section-1__nav-bar'%>">
     <div class="navbar-wrapper">
       <nav class="navbar">
         <div class="menu">
@@ -33,11 +33,12 @@
          
         </ul>
         <div class="navbar-buttons">
-          <a href="/signup" class="navbar-btn" type="submit">Sign-Up</a> 
           <% if (!isAuthenticated) { %> 
+          <a href="/signup" class="navbar-btn" type="submit">Sign-Up</a> 
           <a href="/login" class="navbar-btn" type="submit">Login</a> 
           <% } else { %>
             <form action="/logout" method="POST">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
           <button type="submit" class="navbar-btn signup-btn signup">Logout</button>
         </form>
          
@@ -46,7 +47,7 @@
       </nav>
 
     </div>
-    <% if (pageTitle === 'Home' | pageTitle === 'All Posted Jobs' ) { %>
+    <% if (pageTitle === 'Home' | pageTitle === 'All Post' ) { %>
       <%- include('../includes/banner-nav.ejs') %>
    <%} %>
 

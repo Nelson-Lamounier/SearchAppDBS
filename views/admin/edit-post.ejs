@@ -23,10 +23,12 @@
               <form action="/admin/delete-job" method="POST"> 
                 <input type="hidden" value="<%= job.id %>" name="jobId">
                 <button class="btn-admin" type="submit">Delete</button> 
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
               </form>
                 <form action="/published-cart" method="POST"> 
               <button class="btn-admin" type="submit">Submit</button>
               <input type="hidden" name="jobId" value="<%= job.id %>">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             </form>
                
             </div>
