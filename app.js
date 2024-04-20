@@ -3,11 +3,14 @@
 // htttps => Launch a SSl server
 const path = require("path");
 
+
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const MysqlStore = require("express-mysql-session")(session);
 const csrf = require('csurf'); // CSRF protection middleware.
+const flash = require('connect-flash')
 
 const errorController = require("./controllers/error");
 const sequelize = require("./util/database");
@@ -69,6 +72,7 @@ app.use(
 
 // Middleware for CSRF token creation and validation. This middleware adds a req.csrfToken() function to make a token which should be added to requests which mutate state, within a hidden form field, query-string etc.
 app.use(csrfProtection);
+app.use(flash())
 
 // sequelize register this function but never run it, this is only run for incoming request
 app.use((req, res, next) => {
