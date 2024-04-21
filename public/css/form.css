@@ -124,3 +124,37 @@
   cursor: pointer;
 }
 /* End of Login Page */
+
+/* The alert message box */
+.alert {
+
+  font-size: 2rem;
+  text-align: center;
+  padding: 1.5rem;
+  background-color: #DD5746; /* Red */
+  color: white;
+  margin-bottom: 1.5rem;
+
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 1.5rem;
+  color: white;
+  font-weight: 400;
+  float: right;
+  font-size: 2.2rem;
+  line-height: 2rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
+
+.alert {
+  opacity: 1;
+  transition: opacity 0.6s; /* 600ms to fade out */
+}

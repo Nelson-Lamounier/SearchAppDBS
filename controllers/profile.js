@@ -33,7 +33,6 @@ exports.postAddUser = (req, res, next) => {
   const user = new User(id,firstName, lastName, headline, phone, email, location);
   user.save();
   res.redirect('/user/user-profile')
-  console.log(user)
 }
 
 exports.getUser = (req,res, next) => {

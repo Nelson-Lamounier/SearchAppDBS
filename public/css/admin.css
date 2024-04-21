@@ -673,6 +673,7 @@ input.invalid {
   display: none;
   color: #b6babf;
   font-size: 2rem;
+  
 }
 
 /* Make circles that indicate the steps of the form: */
@@ -766,6 +767,8 @@ input.invalid {
   font-weight: 200;
   padding: 1rem;
 }
+
+
 
 
 
