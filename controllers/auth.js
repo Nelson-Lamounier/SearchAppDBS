@@ -10,8 +10,8 @@ dotenv.config()
 const SESConfig = new AWS.SES({   apiVersion: "2010-12-01",
   region: "eu-west-1", // Your region will need to be updated
   credentials: {
-  accessKeyId: process.env.ACCESS_KEY,
-  secretAccessKey: process.env.SECRET_KEY,
+  // accessKeyId: process.env.ACCESS_KEY,
+  // secretAccessKey: process.env.SECRET_KEY,
 },
 });;
 
