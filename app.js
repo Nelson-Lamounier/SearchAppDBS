@@ -20,6 +20,7 @@ const Cart = require("./models/cart");
 const CartItem = require("./models/cart-item");
 const Published = require("./models/published");
 const PublishedItem = require("./models/published-item");
+const Profile = require('./models/profile')
 
 // MySQL session store
 const options = {
@@ -53,6 +54,8 @@ const jobRoutes = require("./routes/job-cart");
 const adminRouter = require("./routes/admin");
 const userRouter = require("./routes/profile");
 const authRouter = require("./routes/auth");
+// const { Redshift } = require("aws-sdk");
+
 // const { nextTick } = require('process');
 
 const csrfProtection = csrf();
@@ -74,8 +77,14 @@ app.use(
 app.use(csrfProtection);
 app.use(flash())
 
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.session.isLoggedIn;
+  res.locals.csrfToken = req.csrfToken();
+  next();
+});
 // sequelize register this function but never run it, this is only run for incoming request
 app.use((req, res, next) => {
+    // throw new Error('Sync Dummy');
   if (!req.session.user) {
     return next();
   }
@@ -85,26 +94,48 @@ app.use((req, res, next) => {
       next();
     })
     .catch((err) => {
-      console.log(err);
+      next(new Error(err))
     });
 });
 
 app.use((req, res, next) => {
-  res.locals.isAuthenticated = req.session.isLoggedIn;
-  res.locals.csrfToken = req.csrfToken();
-  next();
-});
+  if(!req.session.profile) {
+    return next();
+  }
+  Profile.findByPk(req.session.profile.id).then(profile => {
+    req.profile = profile;
+    next()
+  }).catch(err => {
+    next( new Error(err))
+  })
+})
+
+
 
 app.use(jobRoutes);
 app.use("/admin", adminRouter);
 app.use("/user", userRouter);
 app.use(authRouter);
 
+
+app.get('/500', errorController.get500)
+
 app.use(errorController.get404);
+
+// Global middleware to handle 500 error
+app.use((error, req, res, next)=> {
+  res.status(500).render('500', {
+    pageTitle: 'Error!',
+    path: '/500',
+    isAuthenticated: req.session.isLoggedIn
+  })
+})
 
 // Create association for the database
 
 Job.belongsTo(User, { constraints: true, onDelete: "CASCADE" });
+Job.belongsTo(Profile, { constraints: true, onDelete: "CASCADE" });
+Profile.hasMany(Job);
 User.hasMany(Job);
 User.hasOne(Cart);
 Cart.belongsTo(User);
@@ -114,7 +145,9 @@ Published.belongsTo(User);
 User.hasMany(Published);
 Published.belongsToMany(Job, { through: PublishedItem });
 
-// {force: true}
+// sync() - This creates the table if it doesn't exist (and does nothing if it already exists)
+// sync({ force: true }) - This creates the table, dropping it first if it already existed
+// sync({ alter: true }) - This checks what is the current state of the table in the database (which columns it has, what are their data types, etc), and then performs the necessary changes in the table to make it match the model.
 // 'npm start' => runs the function
 sequelize
   .sync()

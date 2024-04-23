@@ -422,3 +422,19 @@ html {
   letter-spacing: 0.1rem;
 }
 /* End of Section 5 */
+
+/* Error page */
+
+.error-page {
+  display: flex;
+  justify-content: center;
+  font-size: 2rem;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
+  font-weight: 500;
+  color: #333;
+}
+.error-page p{
+  color: rgb(193, 44, 44);
+}

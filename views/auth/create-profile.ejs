@@ -24,18 +24,25 @@
                 </div>
                 <form class="sign-up-page-form" action="/signup" method="POST">
                   <input
+                  
                     type="text"
-                    class="form-login-input"
+                    
                     placeholder="First name"
-                    name="firstName"
+                    name="firstName" value="<%= oldInput.firstName %>"
                   />
-                  <input type="text" class="form-login-input" placeholder="Last name" name="lastName"/>
-                  <input type="text" class="form-login-input" placeholder="Headline" name="headline"/>
-                  <input type="text" class="form-login-input" placeholder="Phone" name="phone"/>
-                  <input type="text" class="form-login-input" placeholder="Email" name="email" />
-                  <input type="text" class="form-login-input" placeholder="Location" name="location" />
-                  <input type="password" class="form-login-input" placeholder="Password" name="password" />
-                  <input type="password" class="form-login-input" placeholder="Confirm password" name="confirmPassword" />
+                  <input type="text"  placeholder="Last name" name="lastName" value="<%= oldInput.lastName %>"/>
+                  <input type="text"  placeholder="Headline" name="headline" value="<%= oldInput.headline %>"/>
+                  <input type="text" placeholder="Phone" name="phone" value="<%= oldInput.phone %>"/>
+                  <input 
+                  class="<%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %>"
+                  type="email" placeholder="Email" name="email" value="<%= oldInput.email %>"/>
+                  <input type="text" placeholder="Location" name="location" value="<%= oldInput.location %>"/>
+                  <input 
+                  class="<%= validationErrors.find(e => e.param === 'password') ? 'invalid' : '' %>"
+                  type="password" placeholder="Password" name="password" value="<%= oldInput.password %>" />
+                  <input 
+                  class="<%= validationErrors.find(e => e.param === 'confirmPassword') ? 'invalid' : '' %>"
+                  type="password" placeholder="Confirm password" name="confirmPassword" value="<%= oldInput.confirmPassword %>" />
                   <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                   <button type="submit" class="form-login-btn">Sign up</button>      
  

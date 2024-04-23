@@ -3,28 +3,33 @@ const Published = require("../models/published");
 
 exports.getPosts = (req, res, next) => {
   Published.findAll({ include: ["jobs"] })
-  .then(publisheds => {
-    res.render('main/post-list', {
-      pageTitle: "All Post",
-      path:'/',
-      publisheds: publisheds,
+    .then((publisheds) => {
+      res.render("main/post-list", {
+        pageTitle: "All Post",
+        path: "/",
+        publisheds: publisheds,
+      });
     })
-  }).catch(err => console.log(err))
-}
+    .catch((err) => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
+};
 
 exports.postIndex = (req, res, next) => {
   let fetchedCart;
   req.user
     .getCart()
-    .then(cart => {
+    .then((cart) => {
       //Access to the cart
       fetchedCart = cart;
       return cart.getJobs();
     })
-    .then(posts => {
+    .then((posts) => {
       return req.user
         .createPublished()
-        .then(published => {
+        .then((published) => {
           return published.addJobs(posts);
         })
         .catch((err) => console.log(err));
@@ -35,21 +40,29 @@ exports.postIndex = (req, res, next) => {
     .then((result) => {
       res.redirect("/admin-posted");
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
 };
 
 // Function to get the main page with published posts
 exports.getIndex = (req, res, next) => {
   req.user
     .getPublisheds({ include: ["jobs"] })
-    .then(publisheds => {
+    .then((publisheds) => {
       res.render("published/admin-posted", {
         path: "/admin-posted",
         pageTitle: "Admin Search",
         publisheds: publisheds,
       });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
 };
 
 // exports.getIndex = (req, res, next) => {
@@ -72,24 +85,31 @@ exports.getPostedJobs = (req, res, next) => {
     .createCart()
     .then((cart) => {
       if (cart) {
-        req.user.getCart().then(
-          cart => {
-            return cart.getJobs().then((postJobs) => {
-              res.render("admin/published-cart", {
-                path: "/admin/published-cart",
-                pageTitle: "Admin Publish",
-                posts: postJobs,
-             
-              });
-            }).catch(err => console.log(err))
-          }
-        ).catch(err => console.log(err))
+        req.user
+          .getCart()
+          .then((cart) => {
+            return cart
+              .getJobs()
+              .then((postJobs) => {
+                res.render("admin/published-cart", {
+                  path: "/admin/published-cart",
+                  pageTitle: "Admin Publish",
+                  posts: postJobs,
+                });
+              })
+              .catch((err) => console.log(err));
+          })
+          .catch((err) => console.log(err));
       }
-
-    }).then(cart => {
-      return cart
     })
-    .catch((err) => console.log(err));
+    .then((cart) => {
+      return cart;
+    })
+    .catch((err) => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
 };
 // Function to post the information to the Publish Cart
 exports.postPostedJobs = (req, res, next) => {
@@ -115,7 +135,11 @@ exports.postPostedJobs = (req, res, next) => {
     .then(() => {
       res.redirect("/published-cart");
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
 };
 // Function to delete Published Post 'cartItem' sequelize method to access the cart object
 exports.postDeletePost = (req, res, next) => {
@@ -132,7 +156,11 @@ exports.postDeletePost = (req, res, next) => {
     .then((result) => {
       res.redirect("/admin/posts");
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
 };
 
 // exports.getPublished = (req, res, next) =>{

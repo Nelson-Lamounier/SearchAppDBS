@@ -1,26 +1,26 @@
 <%- include('../includes/head-user.ejs') %>
+<%- include('../includes/navigation.ejs') %>
 <!-- Sign Up Page -->
 <div class="post-job-page__admin">
-  <%- include('../includes/nav-logged-in.ejs') %>
- 
+
   <div class="page-content__user">
                   <!-- Sign Up Page -->
                   <div class="signup-page">                
                        <div class="profile-page-content__user">
-                          <% for (let user of users ) { %> 
+                        <% for (let profile of profiles ) { %> 
                             <div class="content-left-images">
                                 <img src="">
-                                <h1><%= user.firstName + user.lastName %></h1>
+                                <h1><%= profile.firstName + profile.lastName %></h1>
                             </div>
                             <div class="user-info">
                               
                               <ul>
-                                <li>Email: <%= user.email %></li>
-                                <li>Phone: <%= user.phone %></li>
-                                <li>Address: <%= user.location %></li>
+                                <li>Email:<%= profile.email %></li>
+                                <li>Phone: <%= profile.phone %></li>
+                                <li>Address: <%= profile.location %></li>
                               </ul>
                           </div>
-                          <% } %>
+                         
                         
                           <h2>Update</h2>
                           <div class="updated-file">

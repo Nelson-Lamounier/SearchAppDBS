@@ -20,6 +20,8 @@
   padding: 3rem;
 }
 
+
+
 .login-page-logo {
   margin-bottom: 1.2rem;
 }
@@ -51,6 +53,9 @@
   height: 4.5rem;
   margin: 1rem;
   border-radius: 0.5rem;
+  padding: 0 1.5rem;
+  border: 0.1rem solid #777;
+  font-size: 1.6rem;
 }
 
 .sign-up-page-form input {
@@ -58,15 +63,18 @@
   height: 4.5rem;
   margin: 1rem;
   border-radius: 0.5rem;
-}
-
-
-
-.form-login-input {
   padding: 0 1.5rem;
   border: 0.1rem solid #777;
   font-size: 1.6rem;
+  
 }
+
+
+.login-page-form input.invalid {
+  border-color: #DD5746;
+}
+
+
 
 .form-login-btn {
   background-color: #036bb1;
