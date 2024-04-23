@@ -111,7 +111,10 @@ exports.postEditJob = (req, res, next) => {
   const updatedContract = req.body.contract;
   const updatedLocation = req.body.location;
   const updateddUrl = req.body.jobUrl;
-  Job.findByPk(jobId).then(job => {
+  Job.findByPk(jobId).then(job => { 
+    if(job.userId.toString() !== req.user.id.toString()){
+      return res.redirect('/')
+    }
     job.title = updatedTitle; 
     job.description = updatedDescription; 
     job.salary = updatedSalary; 

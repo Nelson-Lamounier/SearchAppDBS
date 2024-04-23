@@ -21,11 +21,12 @@
                     <span>Smart</span><span>Path</span>
                 </div>
                 <form class="login-page-form" action="/login" method="POST">
-                    <input type="text" class="form-login-input" name="email" placeholder="Email or mobile number">
-                    <input type="password" class="form-login-input" name="password">
+                    <input type="email"  class="<%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %>" name="email" placeholder="Email" value="<%= oldInput.email %>">
+                    
+                    <input type="password"  class="<%= validationErrors.find(e => e.param === 'password') ? 'invalid' : '' %>" name="password" placeholder="Password" value="<%= oldInput.password %>">
                     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                     <button type="submit" class="form-login-btn">Login</button>      
-                    <a href="#" class="form-login-link">Having trouble logging in?</a>
+                    <a href="/reset-password" class="form-login-link">Reset Password</a>
                     <span>or</span>
 
                     <input type="button" class="form-signup-btn signup" value="Sign Up">
