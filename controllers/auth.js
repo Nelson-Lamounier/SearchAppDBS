@@ -29,6 +29,7 @@ const transporter = nodemailer.createTransport(
 const User = require("../models/user");
 
 
+
 exports.getLogin = (req, res, next) => {
   let message = req.flash("error");
   if (message.length > 0) {
@@ -47,6 +48,10 @@ exports.getLogin = (req, res, next) => {
     validationErrors: []
   });
 };
+
+
+
+
 
 // isAuthenticated: false,
 // csrfToken: req.csrfToken()
@@ -111,7 +116,11 @@ exports.postLogin = (req, res, next) => {
           res.redirect("/login");
         });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error)
+    });
 };
 
 // Function to logout user
@@ -209,7 +218,11 @@ exports.postSignup = (req, res, next) => {
       console.log(err);
       res.redirect("/login");
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error)
+    });
 };
 
 // Render reset-password page
@@ -262,7 +275,9 @@ exports.postResetPassword = (req, res, next) => {
         });
       })
       .catch((err) => {
-        console.log(err);
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error)
       });
   });
 };
@@ -292,7 +307,9 @@ exports.getNewPassword = (req, res, next) => {
       });
     })
     .catch((err) => {
-      console.log(err);
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error)
     });
 };
 
@@ -324,10 +341,13 @@ exports.postNewPassword = (req, res, next) => {
       res.redirect("/login");
     })
     .catch((err) => {
-      console.log(err);
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error)
     });
 };
 
 // It is a huge problem if we want to pass some some data into the rendered view when we are redering, beacuse upon a redirect, technically a new request is started, a new request to /login, /signup, etc. That is because on that new request, we don't know we got here because the user entered an invalid e-mail or name formt. When we trigger the new request, it is treated in the same wasy as a request that we triggered by checking on the login button in our menu => with that we have no way of finding out if we provide an error message or not
 // => to solve the above mentioned issue we store some data before we redirect whcih we then use in the brand new request
 // To store data across request, we need a session
+// error code 500 => server side issue occured

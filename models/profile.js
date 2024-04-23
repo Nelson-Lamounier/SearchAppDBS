@@ -1,45 +1,55 @@
-const fs = require('fs')
+const Sequelize = require('sequelize');
 
-const path = require('path')
+const sequelize = require('../util/database');
 
-const p = path.join(
-  path.dirname(process.mainModule.filename),
-  'data',
-  'users.json'
-)
-
-const getUsersFromFile = cb => {
-  fs.readFile(p, (err, fileContent) => {
-    if(err) {
-      cb([]);
-    } else {
-      cb(JSON.parse(fileContent))
-    }
-  })
-}
-
-module.exports = class Use{
-  constructor(id, firstName, lastName, headline, phone, email, location) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.headline = headline;
-    this.phone = phone;
-    this.email = email;
-    this.location = location;
+const Profile = sequelize.define('profile', {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    allowNull: false,
+    primaryKey: true,
+  },
+  firstName: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  }, 
+  lastName: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  }, 
+  headline: {
+    type: Sequelize.STRING,
+    allowNull: true,
+  }, 
+  phone: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  email: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  location: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  password: {
+    type: Sequelize.STRING,
+    allowNull: false
+    
+  },
+  resetToken: {
+    type: Sequelize.STRING,
+    allowNull: true
+  
+  },
+  resetTokenExpiration: {
+    type: Sequelize.DATE,
+    allowNull: true
   }
 
-  save() {
-    this.id = Math.random().toString();
-    getUsersFromFile (users => {
-      users.push(this)
-      fs.writeFile(p, JSON.stringify(users), err =>{
-        console.log(err)
-      })
-    })
-  }
+});
 
-  static fetchAll(cb) {
-    getUsersFromFile(cb)
-  }
-}
+
+
+module.exports = Profile;
