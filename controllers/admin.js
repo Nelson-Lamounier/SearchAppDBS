@@ -1,4 +1,5 @@
 const Job = require("../models/post");
+const Published = require("../models/published");
 
 exports.getAddPost = (req, res, next) => {
   if (!req.session.isLoggedIn) {
@@ -8,6 +9,7 @@ exports.getAddPost = (req, res, next) => {
     pageTitle: "Post a Job",
     path: "/admin/post-job",
     editing: false,
+    
   });
 };
 
@@ -15,6 +17,7 @@ exports.getPostAdmin = (req, res, next) => {
   res.render("admin/posts", {
     pageTitle: "Manager Posts",
     path: "/admin/posts",
+   
   });
 };
 
@@ -57,6 +60,7 @@ exports.getJobById = (req, res, next) => {
       pageTitle: "Edit Job Post",
       path: "/admin/post",
       job: job,
+      
     });
   });
 };
@@ -69,6 +73,7 @@ exports.getJobs = (req, res, next) => {
         jps: jobs,
         pageTitle: "Admin Jobs Manager",
         path: "/admin/posts",
+       
 
         // hasJobs: jobs.length > 0,
       });
@@ -99,6 +104,7 @@ exports.getEditJob = (req, res, next) => {
         path: " /admin/edit-post",
         editing: editMode,
         job: job,
+       
       });
     })
     .catch((err) => {
@@ -199,3 +205,34 @@ exports.postCart = (req, res, next) => {
 //     });
 //   });
 // };
+
+// exports.getClickedPost = (req, res, next) => {
+//     const postId = req.post.id;
+//     Job.findByPk(postId).then(job => {
+//       if (!job) {
+//         return res.redirect('/')
+//       }
+//       res.render('published/post-published', {
+//         pageTitle: 'Home',
+//         path: '/',
+//         job: job,
+//       })
+//     })
+// }
+
+exports.getClickedPost = (req, res, next) => {
+  const jobId = req.params.jobId;
+  console.log(jobId)
+  Job.findByPk(jobId).then((job) => {
+    console.log(jobId)
+    res.render("main/job-description", {
+      pageTitle: "Jobs Description",
+      path: "/job-description",
+      job: job,
+      
+    });
+  })
+};
+
+
+

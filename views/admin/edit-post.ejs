@@ -27,7 +27,7 @@
               </form>
                 <form action="/published-cart" method="POST"> 
               <button class="btn-admin" type="submit">Save</button>
-              <input type="hidden" name="jobId" value="<%= job.id %>">
+              <input type="hidden" value="<%= job.id %>" name="jobId">
               <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             </form>
                

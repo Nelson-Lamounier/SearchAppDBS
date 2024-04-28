@@ -19,6 +19,7 @@ router.post('/posts', isAuth, adminController.postAddPost);
 router.get('/posts', isAuth, adminController.getJobs); // Route for get ALL created post display at the admin section
 
 router.get('/post/:jobId', isAuth, adminController.getJobById) // Route to get the create job post by Id => this function leads to the edit post section
+router.get('/job-description/:jobId', adminController.getClickedPost)
 
 router.get('/edit-post/:jobId', isAuth, adminController.getEditJob) //Function to edit the created post before Posting to the cart 
 

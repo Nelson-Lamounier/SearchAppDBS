@@ -1,61 +1,85 @@
 <%- include('../includes/head-form.ejs') %>
 <!-- Sign Up Page -->
 <div class="post-job-page__admin">
-  <%- include('../includes/navigation.ejs') %>
+  <%- include('../includes/nav-user-profile.ejs') %>
 
   <div class="container">
-    <div class="front-page"> 
-       <!-- Login Page -->
- 
-        <div class="login-page">
-          <% if (errorMessage) { %>
-            <div class="error-message__container"> 
-            <div class="alert">
-                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-           <%= errorMessage %>
-            </div>
+<div class="form-profile" id="regForm"> 
+    <form  action="/user/create-profile" method="POST" enctype="multipart/form-data">
+      <div class="login-page-logo logo">
+        <span class="p-1">S</span>
+        <span class="p-2">P</span>
+        <span>Smart</span><span>Path</span>
+    </div>
+      <% if (errorMessage) { %>
+        <div class="error-message__container"> 
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+       <%= errorMessage %>
         </div>
-            <% } %>
-            <div class="login-page-content">
-                <div class="login-page-logo logo">
-                    <span class="p-1">S</span>
-                    <span class="p-2">P</span>
-                    <span>Smart</span><span>Path</span>
-                </div>
-                <form class="sign-up-page-form" action="/user/create-profile" method="POST">
-                  <input
-                  
-                    type="text"
-                    
-                    placeholder="First name"
-                    name="firstName" value="<%= oldInput.firstName %>"
-                  />
-                  <input type="text"  placeholder="Last name" name="lastName" value="<%= oldInput.lastName %>"/>
-                  <input type="text"  placeholder="Headline" name="headline" value="<%= oldInput.headline %>"/>
-                  <input type="text" placeholder="Phone" name="phone" value="<%= oldInput.phone %>"/>
-                  <input 
-                  class="<%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %>"
-                  type="email" placeholder="Email" name="email" value="<%= oldInput.email %>"/>
-                  <input type="text" placeholder="Location" name="location" value="<%= oldInput.location %>"/>
-                  <input 
-                  class="<%= validationErrors.find(e => e.param === 'password') ? 'invalid' : '' %>"
-                  type="password" placeholder="Password" name="password" value="<%= oldInput.password %>" />
-                  <input 
-                  class="<%= validationErrors.find(e => e.param === 'confirmPassword') ? 'invalid' : '' %>"
-                  type="password" placeholder="Confirm password" name="confirmPassword" value="<%= oldInput.confirmPassword %>" />
-                  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                  <button type="submit" class="form-login-btn">Sign up</button>      
- 
-                </form>
-            </div>
+    </div>
+        <% } %>
+      
+      <!-- One "tab" for each step in the form: -->
+      <div class="tab">Name:
+        <p><input oninput="this.className = ''"  type="text"  placeholder="Headline" name="headline" value="<%= oldInput.headline %>"/></p>
+        <p><input oninput="this.className = ''" type="text" placeholder="First name" name="firstName" value="<%= oldInput.firstName %>"
+        /></p>
+        <p><input type="text"  placeholder="Last name" name="lastName" value="<%= oldInput.lastName %>"/></p>
+      
+      </div>
+      
+      <div class="tab">Contact Info:
+        <p><input oninput="this.className = ''"  type="text" placeholder="Phone" name="phone" value="<%= oldInput.phone %>"/></p>
+        <p><input oninput="this.className = ''"  class="<%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %>"
+          type="email" placeholder="Email" name="email" value="<%= oldInput.email %>"/></p>
+      </div>
+      
+      <div class="tab">Additional Info:
+        <p><input oninput="this.className = ''"  type="text" placeholder="Location" name="location" value="<%= oldInput.location %>"/></p>
+        <p><input type="file" name="uploadCv" id="uploadCv"> </p>
+        
+      </div>
+      
+      <div class="tab">Login Info:
+        <p><input oninput="this.className = ''"  class="<%= validationErrors.find(e => e.param === 'password') ? 'invalid' : '' %>"
+          type="password" placeholder="Password" name="password" value="<%= oldInput.password %>"/></p>
+        <p><input oninput="this.className = ''"  class="<%= validationErrors.find(e => e.param === 'confirmPassword') ? 'invalid' : '' %>"
+          type="password" placeholder="Confirm password" name="confirmPassword" value="<%= oldInput.confirmPassword %>" /></p>
+      </div>
+  
+      <div style="overflow:auto;">    
+        <div class="" style="float:right;">
+          <div class="profile-signup__form">
+          <button type="button" class="form-login-btn" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+          <button type="button" class="form-login-btn" id="nextBtn" onclick="nextPrev(1)">Next</button>
+          <button type="hidden" class="form-login-btn" id="nextBtn" onclick="nextPrev(1)">Next</button>
+          
         </div>
+      </div>
+    </div>
+ 
+        
+      
+      
+      <!-- Circles which indicates the steps of the form: -->
+      <div style="text-align:center;margin-top:40px;">
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
+   
+      </div>
 
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      </form>
     </div>
     </div>
+    
+
         <!-- End of Login Page -->
 
-        <%- include('../includes/end.ejs') %>
+       
+      </div>
+    
 
-
-</div>
 <%- include('../includes/footer.ejs') %> <%- include('../includes/end.ejs') %>

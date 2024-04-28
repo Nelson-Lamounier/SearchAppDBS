@@ -1,36 +1,72 @@
-<%- include('../includes/head-user.ejs') %>
+<%- include('../includes/head-form.ejs') %>
 <!-- Sign Up Page -->
 <div class="post-job-page__admin">
-  <%- include('../includes/nav-logged-in.ejs') %>
+  <%- include('../includes/nav-user-profile.ejs') %>
+
+  <div class="container">
+    <div class="front-page"> 
+       <!-- Login Page -->
  
-  <div class="page-content__user">
-                  <!-- Sign Up Page -->
-                  <div class="signup-page">                
-                       <div class="profile-page-content__user">
-                          <% for (let user of users ) { %> 
-                            <div class="content-left-images">
-                                <img src="">
-                                <h1><%= user.firstName + user.lastName %></h1>
-                            </div>
-                            <div class="user-info">
-                              
-                              <ul>
-                                <li>Email: <%= user.email %></li>
-                                <li>Phone: <%= user.phone %></li>
-                                <li>Address: <%= user.location %></li>
-                              </ul>
-                          </div>
-                          <% } %>
-                        
-                          <h2>Update</h2>
-                          <div class="updated-file">
-                            <button type="submit" class="cv-btn">Update CV</button>
-                            <button type="submit" class="cv-btn">Cover Letter</button>
-                          </div>
-                        </div>
+        <div class="login-page">
+          <% if (errorMessage) { %>
+            <div class="error-message__container"> 
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+           <%= errorMessage %>
+            </div>
+        </div>
+            <% } %>
+            <div class="login-page-content">
+                <div class="login-page-logo logo">
+                    <span class="p-1">S</span>
+                    <span class="p-2">P</span>
+                    <span>Smart</span><span>Path</span>
                 </div>
-                <!-- End of Sign Up Page -->
-  </div>  
-   
+                <form class="sign-up-page-form" action="/user/create-profile" method="POST">
+                  <input
+                  
+                    type="text"
+                    
+                    placeholder="First name"
+                    name="firstName" value="<%= oldInput.firstName %>"
+                  />
+                  <input type="text"  placeholder="Last name" name="lastName" value="<%= oldInput.lastName %>"/>
+                  <input type="text"  placeholder="Headline" name="headline" value="<%= oldInput.headline %>"/>
+                  <input type="text" placeholder="Phone" name="phone" value="<%= oldInput.phone %>"/>
+                  <input 
+                  class="<%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %>"
+                  type="email" placeholder="Email" name="email" value="<%= oldInput.email %>"/>
+                  <input type="text" placeholder="Location" name="location" value="<%= oldInput.location %>"/>
+                  <input 
+                  class="<%= validationErrors.find(e => e.param === 'password') ? 'invalid' : '' %>"
+                  type="password" placeholder="Password" name="password" value="<%= oldInput.password %>" />
+                  <input 
+                  class="<%= validationErrors.find(e => e.param === 'confirmPassword') ? 'invalid' : '' %>"
+                  type="password" placeholder="Confirm password" name="confirmPassword" value="<%= oldInput.confirmPassword %>" />
+                  <h2>Update</h2>
+                  <div class="updated-file">
+                    <form action="/user/user-profile" method="POST" enctype="multipart/form-data">
+                      <input type="file" name="uploadCv" id="uploadCv"> 
+                    <button name="uploadCv" type="submit" class="cv-btn">Update CV</button>
+                    <input type="file" name="uploadCover" id="uploadCv"> 
+                    <button name="uploadCover" type="submit" class="cv-btn">Cover Letter</button>
+                  
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                  </div>
+                </form>
+                  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                  <button type="submit" class="form-login-btn">Sign up</button>      
+ 
+                </form>
+            </div>
+        </div>
+
+    </div>
+    </div>
+        <!-- End of Login Page -->
+
+        <%- include('../includes/end.ejs') %>
+
+
 </div>
 <%- include('../includes/footer.ejs') %> <%- include('../includes/end.ejs') %>

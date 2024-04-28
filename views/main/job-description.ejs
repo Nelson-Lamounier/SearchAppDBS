@@ -1,0 +1,49 @@
+<%- include('../includes/head.ejs') %>
+
+</head>
+
+<body>
+  <%- include('../includes/navigation.ejs') %>
+
+  <%- include('../includes/container.ejs') %>
+
+<div class="jobs-search-page-content-right">
+
+  <div class="jobs-search-container-right" id="scroll-container">
+    <h1></h1> 
+      <p> Company Name</p>
+      <p><%= job.title %> </p>
+    <p>Full-Time</p>
+    <form action="/saved-jobs" method="POST" >    
+    <button class="btn-apply">Apply</button>
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+  </form>
+  <form action="/user/saved-jobs" method="POST" >    
+    <button class="btn-save"><i class="fa fa-bookmark"></i></button>
+    <input type="hidden" value="<%= job.id%>" name="jobId">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+  </form>
+    
+    <div class="scroll-container" >
+      <div class="content" >
+        <div class="subcontainer-info"> 
+        <h1> Job details</h1>
+        <p> <%= job.salary %></p>
+        <p><%= job.contract %> </p>
+      </div>
+      <div class="subcontainer-info"> 
+        <h1> Location</h1>
+        <p> <%= job.location %> </p>
+      </div>
+      <div class="subcontainer-info"> 
+        <h1> Full Job Description</h1>
+
+          <p><%= job.description %></p>
+      </div>
+
+      </div>
+    </div>
+  </div>
+
+
+</div>

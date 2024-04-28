@@ -17,25 +17,32 @@
         </div>
         <ul class="nav-list">
           <% if (isAuthenticated) { %>
-          <li class="nav-list-item dropdown-hover">
-            <a href="admin/post-job" class="nav-list-link show-dropdown">Admin</a>
+            <li class="nav-list-item dropdown-hover">
+              <a href="/user/saved-jobs" class="nav-list-link show-dropdown">Saved Jobs</a>
+            </li>
+            <li class="nav-list-item dropdown-hover">
+              <a href="/user/user-profile" class="nav-list-link show-dropdown">Profile</a>
+
+            </li>
+            <li class="nav-list-item dropdown-hover">
+              <a href="/admin/posts" class="nav-list-link show-dropdown">Admin</a>
+            </li>
+
+          <%  } %>
+          <% if (!isAuthenticated) { %> 
+          <li class="nav-list-item">
+            <a href="/user/profile-login" class="nav-list-link">Personal</a>
           </li>
-          <li class="nav-list-item dropdown-hover">
-            <a href="/" class="nav-list-link show-dropdown">All Posts</a>
-          </li>
-          <li class="nav-list-item dropdown-hover">
-            <a href="/admin/post-job" class="nav-list-link show-dropdown">Create a Post</a>
+          <li class="nav-list-item">
+            <a href="/login" class="nav-list-link">Business</a>
           </li>
           <%  } %>
-          <li class="nav-list-item">
-            <a href="/" class="nav-list-link">Home</a>
-          </li>
-         
         </ul>
+       
         <div class="navbar-buttons">
           <% if (!isAuthenticated) { %> 
-          <a href="/signup" class="navbar-btn" type="submit">Sign-Up</a> 
-          <a href="/login" class="navbar-btn" type="submit">Login</a> 
+          <a href="/user/create-profile" class="navbar-btn" type="submit">Personal</a> 
+          <a href="/login" class="navbar-btn" type="submit">Business</a> 
           <% } else { %>
             <form action="/logout" method="POST">
               <input type="hidden" name="_csrf" value="<%= csrfToken %>">

@@ -1,0 +1,44 @@
+<%- include('../includes/head-form.ejs') %>
+<%- include('../includes/nav-user-profile.ejs') %>
+
+<div class="container">
+    <div class="front-page"> 
+       <!-- Login Page -->
+        
+        <div class="login-page">
+            <% if (errorMessage) { %>
+                <div class="error-message__container"> 
+                <div class="alert">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+               <%= errorMessage %>
+                </div>
+            </div>
+                <% } %>
+            <div class="login-page-content">
+                <div class="login-page-logo logo">
+                    <span class="p-1">S</span>
+                    <span class="p-2">P</span>
+                    <span>Smart</span><span>Path</span>
+                </div>
+                <form class="login-page-form" action="/user/profile-login" method="POST">
+                    <input type="email"  class="<%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %>" name="email" placeholder="Email" value="<%= oldInput.email %>">
+                    
+                    <input type="password"  class="<%= validationErrors.find(e => e.param === 'password') ? 'invalid' : '' %>" name="password" placeholder="Password" value="<%= oldInput.password %>">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <button type="submit" class="form-login-btn">Login</button>      
+                    <a href="/reset-password" class="form-login-link">Reset Password</a>
+                    <span>or</span>
+
+                    <input type="button" class="form-signup-btn signup" value="Sign Up">
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+    </div>
+        <!-- End of Login Page -->
+
+        <%- include('../includes/end.ejs') %>
+
+  

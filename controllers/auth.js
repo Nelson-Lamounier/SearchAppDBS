@@ -40,6 +40,7 @@ exports.getLogin = (req, res, next) => {
   res.render("auth/login", {
     path: "/login",
     pageTitle: "Login",
+    isAuthenticated: req.isLoggedIn,
     errorMessage: message,
     oldInput: {
       email: '',
@@ -58,6 +59,7 @@ exports.getLogin = (req, res, next) => {
 
 // Function to gather user login information / Cookies
 exports.postLogin = (req, res, next) => {
+  req.isLoggedIn = true;
   // Extract the email/password from the request body => two info we need to sign the user in
   const email = req.body.email;
   const password = req.body.password;
@@ -66,10 +68,12 @@ exports.postLogin = (req, res, next) => {
     return res.status(422).render('auth/login', {
       path: '/login',
       pageTitle: 'Login',
+      
       errorMessage: errors.array()[0].msg,
       oldInput: {
         email: email,
-        password: password
+        password: password,
+        
       },
       validationErrors: errors.array()
     })

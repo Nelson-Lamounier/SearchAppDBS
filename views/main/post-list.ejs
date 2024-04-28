@@ -26,12 +26,13 @@
             <div class="jobs-search-container">
             
 
-              <a href=""><%= job.title %>   </a>
+              <a href="/admin/job-description/<%= job.id %>?"><%= job.title %>   
                 <p>Company Name</p>
               <p><%= job.title %> </p>
               <p><%= job.contract %></p>
               <p><%= job.description %></p>
               <p><%= job.id %></p>
+            </a>
             </div>
             <% }) %>
             <% }) %>
@@ -46,38 +47,7 @@
               <p>No one is better than John Doe.</p>
             </div> -->
           </div>
-          <div class="jobs-search-page-content-right">
-
-            <div class="jobs-search-container-right" id="scroll-container">
-              <h1>Job Title </h1> 
-                <p> Company Name</p>
-              <p> Location</p>
-              <p>Full-Time</p>
-              <button class="btn-apply">Apply</button>
-              <button class="btn-save"><i class="fa fa-bookmark"></i></button>
-              <div class="scroll-container" >
-                <div class="content" >
-                  <div class="subcontainer-info"> 
-                  <h1> Job details</h1>
-                  <p> Location</p>
-                </div>
-                <div class="subcontainer-info"> 
-                  <h1> Location</h1>
-                  <p> Location</p>
-                </div>
-                <div class="subcontainer-info"> 
-                  <h1> Full job description</h1>
-                    <p> Location</p>
-                    <p>Full-Time</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium necessitatibus ipsa libero atque officia natus quasi voluptas, ducimus quisquam. Soluta esse quasi doloribus quisquam corporis tempore sed consequatur possimus vel.</p>
-                </div>
-
-                </div>
-              </div>
-            </div>
-
-
-          </div>
+         
       </div>
 
   </div>
