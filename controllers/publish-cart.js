@@ -1,6 +1,7 @@
 const Job = require("../models/post");
 const Published = require("../models/published");
 
+
 exports.getPosts = (req, res, next) => {
   Published.findAll({ include: ["jobs"] })
     .then((publisheds) => {
@@ -79,7 +80,7 @@ exports.getSearchJobs = (req, res, next) => {
   });
 };
 
-// Function to display the job post on the main page with the Post information extracted from the jobs.json file
+// Function to create the cart
 exports.getPostedJobs = (req, res, next) => {
   req.user
     .createCart()
@@ -92,7 +93,7 @@ exports.getPostedJobs = (req, res, next) => {
               .getJobs()
               .then((postJobs) => {
                 res.render("admin/published-cart", {
-                  path: "/admin/published-cart",
+                  path: "/published-cart",
                   pageTitle: "Admin Publish",
                   posts: postJobs,
                 });
@@ -113,20 +114,34 @@ exports.getPostedJobs = (req, res, next) => {
 };
 // Function to post the information to the Publish Cart
 exports.postPostedJobs = (req, res, next) => {
+  // const jobId = req.body.jobId;
+  // Job.findByPk(jobId).then(job => {
+  //   return req.user.addToCart(job);
+  // }).then(result => {
+  //   console.log(result);
+  //   res.redirect('/published-cart')
+  // }).catch(err => {
+  //   console.log(err)
+  // })
+
   const postId = req.body.jobId;
   let fetchedCart;
   req.user
     .getCart()
     .then((cart) => {
+      console.log(postId)
       fetchedCart = cart;
       return cart.getJobs({ where: { id: postId } });
+
     })
     .then((posts) => {
       let post;
       if (posts.length > 0) {
         post = posts[0];
       }
-
+      if(post) {
+        return post;
+      }
       return Job.findByPk(postId);
     })
     .then((post) => {
@@ -136,9 +151,8 @@ exports.postPostedJobs = (req, res, next) => {
       res.redirect("/published-cart");
     })
     .catch((err) => {
-      const error = new Error(err);
-      error.httpStatusCode = 500;
-      return next(error);
+      
+      console.log(err);
     });
 };
 // Function to delete Published Post 'cartItem' sequelize method to access the cart object

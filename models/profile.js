@@ -38,6 +38,12 @@ const Profile = sequelize.define('profile', {
     allowNull: false
     
   },
+  uploadCv: {
+    type: Sequelize.STRING,
+    allowNull: true
+  
+  },
+
   resetToken: {
     type: Sequelize.STRING,
     allowNull: true

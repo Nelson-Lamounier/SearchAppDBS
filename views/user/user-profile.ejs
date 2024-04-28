@@ -1,5 +1,5 @@
 <%- include('../includes/head-user.ejs') %>
-<%- include('../includes/navigation.ejs') %>
+<%- include('../includes/nav-user-profile.ejs') %>
 <!-- Sign Up Page -->
 <div class="post-job-page__admin">
 
@@ -7,10 +7,10 @@
                   <!-- Sign Up Page -->
                   <div class="signup-page">                
                        <div class="profile-page-content__user">
-                        <% for (let profile of profiles ) { %> 
+
                             <div class="content-left-images">
                                 <img src="">
-                                <h1><%= profile.firstName + profile.lastName %></h1>
+                                <h1><%= profile.firstName %></h1>
                             </div>
                             <div class="user-info">
                               
@@ -24,9 +24,15 @@
                         
                           <h2>Update</h2>
                           <div class="updated-file">
-                            <button type="submit" class="cv-btn">Update CV</button>
-                            <button type="submit" class="cv-btn">Cover Letter</button>
+                            <form action="/user/user-profile" method="POST" enctype="multipart/form-data">
+                              <input type="file" name="uploadCv" id="uploadCv"> 
+                            <button name="uploadCv" type="submit" class="cv-btn">Update CV</button>
+                            <input type="file" name="uploadCover" id="uploadCv"> 
+                            <button name="uploadCover" type="submit" class="cv-btn">Cover Letter</button>
+                            <input type="hidden" value="<%= profile.id %>" name="profileId">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                           </div>
+                        </form>
                         </div>
                 </div>
                 <!-- End of Sign Up Page -->

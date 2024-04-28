@@ -1,7 +1,7 @@
 <%- include('../includes/head-user.ejs') %>
 <!-- Sign Up Page -->
 <div class="post-job-page__admin">
-  <%- include('../includes/nav-logged-in.ejs') %>
+  <%- include('../includes/nav-user-profile.ejs') %>
  
   <div class="page-content__user">
 
@@ -14,13 +14,34 @@
   <button class="tablink" onclick="openCity('Paris', this, 'white')">Applied</button>
   <button class="tablink" onclick="openCity('Tokyo', this, 'white')">Interviews</button>
   <button class="tablink" onclick="openCity('Oslo', this, 'white')">Archived</button>
+  
   <div id="London" class="tabcontent">
+    <% if (posts.length > 0) { %>
+      <% posts.forEach(p => { %>
     <div class="user-interation-jobs"> 
-    <a href="">Title</a>
-    <p>London is the capital city of England.</p>
-    <p>London is the capital city of England.</p>
+     
+    <a href="/admin/job-description/<%= p.id %>?">Review</a>
+    <p><strong><%= p.title %></strong></p>
+    <p><%= p.contract %></p>
+    <p><%= p.salary %></p>
+  
+    <form action="/user/remove-saved" method="POST"> 
+      <input type="hidden" value="<%= p.id %>" name="jobId">
+      <button class="btn-admin" type="submit">Remove</button> 
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    </form>
+
   </div>
+
+  <% }) %>
+  <% } else { %>
+    <h1>No Job Saved!</h1>
+  <% } %>
+ 
   </div>
+ 
+
+
   
   <div id="Paris" class="tabcontent">
     <h1>Paris</h1>
@@ -36,12 +57,16 @@
     <h1>Oslo</h1>
     <p>Oslo is the capital of Norway.</p>
   </div>
+
+
+
   
   
 
 
 
 </div>
+
 
 </div>
   </div>  

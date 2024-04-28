@@ -1,0 +1,58 @@
+<div class="container">
+  <section class="<%= pageTitle === 'Home'  | pageTitle === 'All Post' ? 'section-1' : 'section-1__nav-bar'%>">
+    <div class="navbar-wrapper">
+      <nav class="navbar">
+        <div class="menu">
+          <div class="menu-icon">
+            <div class="line line-1"></div>
+            <div class="line line-2"></div>
+            <div class="line line-3"></div>
+          </div>
+          <span>Menu</span>
+        </div>
+        <div class="navbar-logo logo">
+          <span class="p-1">S</span>
+          <span class="p-2">P</span>
+          SmartPath
+        </div>
+        <ul class="nav-list">
+          <li class="nav-list-item">
+            <a href="/" class="nav-list-link">Home</a>
+          </li>
+          <% if (isAuthenticated) { %>
+  
+          <li class="nav-list-item dropdown-hover">
+            <a href="/user/saved-jobs" class="nav-list-link show-dropdown">Saved Jobs</a>
+          </li>
+          <li class="nav-list-item dropdown-hover">
+            <a href="/user/user-profile" class="nav-list-link show-dropdown">Profile</a>
+          </li>
+          <%  } %>
+
+
+        </ul>
+        <div class="navbar-buttons">
+          <% if (!isAuthenticated) { %> 
+          <a href="/user/create-profile" class="navbar-btn" type="submit">Sign-Up</a> 
+          <a href="/user/profile-login" class="navbar-btn" type="submit">Login</a> 
+          <% } else { %>
+            <form action="/user/profile-logout" method="POST">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <button type="submit" class="navbar-btn signup-btn signup">Logout</button>
+        </form>
+         
+        </div>
+        <%  } %>
+      </nav>
+
+    </div>
+    <% if (pageTitle === 'Home' | pageTitle === 'All Post' ) { %>
+      <%- include('../includes/banner-nav.ejs') %>
+   <%} %>
+
+
+    
+  </section>
+
+
+

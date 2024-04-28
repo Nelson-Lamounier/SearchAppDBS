@@ -76,16 +76,28 @@ showTab(currentTab); // Display the current tab
 
 function showTab(n) {
   // This function will display the specified tab of the form ...
+  var buttonNext = document.getElementById('nextBtn')
+  var buttonPrev = document.getElementById('prevBtn')
+
+
   var x = document.getElementsByClassName("tab");
   x[n].style.display = "block";
   // ... and fix the Previous/Next buttons:
   if (n == 0) {
-    document.getElementById("prevBtn").style.display = "none";
+    buttonPrev.style.display = "none";
   } else {
-    document.getElementById("prevBtn").style.display = "inline";
+    buttonPrev.style.display = "inline";
   }
+
   if (n == (x.length - 1)) {
-    document.getElementById("nextBtn").innerHTML = "Submit";
+    buttonNext.innerHTML = "Submit";
+      // This code listens for a click event on the button and when clicked, it changes the button's type attribute to "submit".
+    buttonNext.addEventListener('click', function(){
+      buttonNext.type = 'submit'
+    })
+
+    // document.getElementById("nextBtn").innerHTML = "Submit";
+    // document.getElementById('nextBtn').type = "submit";
   } else {
     document.getElementById("nextBtn").innerHTML = "Next";
   }
